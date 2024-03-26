@@ -15,7 +15,10 @@ class DioApi {
     dio.interceptors.add(HeaderInterceptor().create());
   }
 
-  static Map<String, dynamic> handleResult(Map<String, dynamic> json) {
+  static Map<String, dynamic> handleResult(Map<String, dynamic>? json) {
+    if (json == null) {
+      throw Exception('请求错误');
+    }
     if (json.isEmpty) {
       throw Exception('请求错误');
     }

@@ -1,4 +1,4 @@
-import 'package:first_project/data/api/view_ext.dart';
+import 'package:first_project/data/api/dialog_ext.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

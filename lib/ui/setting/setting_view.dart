@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../home_page/home_logic.dart';
+import '../home/home_logic.dart';
 import 'setting_logic.dart';
 
 class SettingPage extends StatelessWidget {
