@@ -6,9 +6,14 @@ import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:first_project/data/database/object_box.dart';
+
+late ObjectBox objectbox;
 
 void main() {
   _initStatusBar();
+  _initObjectBox();
+  DioApi.init();
   runApp(const MyApp());
 }
 
@@ -20,12 +25,16 @@ void _initStatusBar() {
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 }
 
+void _initObjectBox() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  objectbox = await ObjectBox.create();
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    DioApi.init();
     return GetMaterialApp(
       title: 'Flutter Demo',
       getPages: GetRouteConfig.getPages(),

@@ -1,6 +1,6 @@
 name: first_project
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' #Remove this line if you wish to publish to pub.dev
 environment:
   sdk: '>=3.3.1 <4.0.0'
 dependencies:
@@ -10,13 +10,18 @@ dependencies:
   get: ^4.6.6
   flutter_svg: ^2.0.10+1
   dio: ^5.4.2
-  build_runner: ^2.4.8
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+  objectbox: ^2.5.1
+  objectbox_flutter_libs: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
-  json_serializable: ^6.7.1
+  flutter_lints: ^3.0.2
+  objectbox_generator: any
+  build_runner: ^2.4.8
+
 
 flutter:
 
@@ -25,5 +30,5 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-      - assets/images/android.png
-      - assets/images/back.svg
+    - assets/images/android.png
+    - assets/images/back.svg
