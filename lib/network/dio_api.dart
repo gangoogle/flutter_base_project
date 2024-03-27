@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:first_project/network/HeaderInterceptor.dart';
-
 import '../data/bean/article_entity.dart';
 
 class DioApi {
@@ -12,7 +10,7 @@ class DioApi {
   ));
 
   static void init() {
-    dio.interceptors.add(HeaderInterceptor().create());
+    // dio.interceptors.add(HeaderInterceptor().create());
   }
 
   static Map<String, dynamic> handleResult(Map<String, dynamic>? json) {

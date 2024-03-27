@@ -1,6 +1,6 @@
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/ui/home/home_view.dart';
-import 'package:first_project/ui/main_home/main_home_view.dart';
+import 'package:first_project/ui/main/main_home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
 import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +36,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
       title: 'Flutter Demo',
       getPages: GetRouteConfig.getPages(),
       theme: ThemeData(

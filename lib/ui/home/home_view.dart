@@ -20,6 +20,9 @@ class HomePage extends StatelessWidget {
           StatusBarPaddingView(color: Colors.blue),
           StatusBar(
             color: Colors.blue,
+            onBack: () {
+              Get.back();
+            },
           ),
           GetBuilder<HomePageLogic>(
             builder: (logic) {

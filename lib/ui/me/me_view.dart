@@ -16,12 +16,12 @@ class MePage extends StatelessWidget {
     return Container(
       color: '#f3f5f5'.color,
       child: Column(children: [
-        StatusBarPaddingView(),
+        StatusBarPaddingView(color: "#2b2d30".color),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Image(
+              const Image(
                 image: AssetImage('assets/images/android.png'),
                 width: 70,
                 height: 70,

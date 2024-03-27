@@ -16,6 +16,7 @@ class MainHomePage extends StatelessWidget {
       return Scaffold(
         body: PageView(
           controller: state.pageControl,
+          physics: NeverScrollableScrollPhysics(),
           children: [
             KeepAliveWrapper(child: HomePage()),
             KeepAliveWrapper(child: MePage()),
