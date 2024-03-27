@@ -8,5 +8,6 @@ class MainHomeLogic extends GetxController {
   void onNavigationTap(int index) {
     state.selectIndex = index;
     state.pageControl.jumpToPage(index);
+    update();
   }
 }

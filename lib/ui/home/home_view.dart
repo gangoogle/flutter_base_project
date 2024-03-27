@@ -1,7 +1,9 @@
 import 'package:first_project/main.dart';
+import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../common/status_bar.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,6 +17,10 @@ class HomePage extends StatelessWidget {
     return Container(
       child: Column(
         children: [
+          StatusBarPaddingView(color: Colors.blue),
+          StatusBar(
+            color: Colors.blue,
+          ),
           GetBuilder<HomePageLogic>(
             builder: (logic) {
               return Text('${state.name}');

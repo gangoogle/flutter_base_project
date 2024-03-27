@@ -2,7 +2,7 @@ import 'package:first_project/ui/home/home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../data/api/keep_alive.dart';
+import '../../api/keep_alive.dart';
 import 'main_home_logic.dart';
 
 class MainHomePage extends StatelessWidget {
@@ -14,16 +14,6 @@ class MainHomePage extends StatelessWidget {
     final state = Get.find<MainHomeLogic>().state;
     return GetBuilder<MainHomeLogic>(builder: (logic) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text('Text'),
-          actions: [
-            TextButton(onPressed: () {}, child: Text('action')),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.adb),
-        ),
         body: PageView(
           controller: state.pageControl,
           children: [

@@ -1,7 +1,7 @@
-import 'package:first_project/data/api/dialog_ext.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import '../../api/dialog_ext.dart';
 import 'home_state.dart';
 
 class HomePageLogic extends GetxController {

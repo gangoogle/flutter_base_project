@@ -4,4 +4,9 @@ import 'me_state.dart';
 
 class MeLogic extends GetxController {
   final MeState state = MeState();
+
+  void updateTest() {
+    state.test++;
+    update();
+  }
 }

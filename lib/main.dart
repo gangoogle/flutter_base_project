@@ -4,10 +4,20 @@ import 'package:first_project/ui/main_home/main_home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
 import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() {
+  _initStatusBar();
   runApp(const MyApp());
+}
+
+void _initStatusBar() {
+  SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.light,
+  );
+  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 }
 
 class MyApp extends StatelessWidget {
