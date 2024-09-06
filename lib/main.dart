@@ -1,5 +1,7 @@
+import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/ui/home/home_view.dart';
+import 'package:first_project/ui/login/login_view.dart';
 import 'package:first_project/ui/main/main_home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
 import 'package:first_project/ui/setting/setting_view.dart';
@@ -44,22 +46,50 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainHomePage(),
+      home: const MainHomePage(),
+      routingCallback: (routing) {
+        print("更新路由-> ${routing?.current ?? ""}");
+        updateStatusBar(routing?.current ?? "");
+      },
     );
   }
 }
 
+/// 修改状态栏
+void updateStatusBar(String route) {
+  switch (route) {
+    case GetRouteConfig.ROOT:
+      setStatusColor(false);
+      break;
+    case GetRouteConfig.LOGIN:
+      setStatusColor(true);
+      break;
+    case GetRouteConfig.SETTING:
+      setStatusColor(false);
+      break;
+    default:
+      setStatusColor(false);
+  }
+}
+
+/// 路由
 class GetRouteConfig {
+  static const String ROOT = "/";
   static const String HOME = "/home";
   static const String ME = "/me";
   static const String SETTING = "/setting";
+  static const String LOGIN = "/login";
 
   static List<GetPage> getPages() {
     return [
-      GetPage(name: "/", page: () => MainHomePage()),
+      GetPage(
+        name: ROOT,
+        page: () => MainHomePage(),
+      ),
       GetPage(name: HOME, page: () => HomePage()),
       GetPage(name: SETTING, page: () => SettingPage()),
-      GetPage(name: ME, page: () => MePage())
+      GetPage(name: ME, page: () => MePage()),
+      GetPage(name: LOGIN, page: () => LoginPage())
     ];
   }
 }

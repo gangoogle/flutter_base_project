@@ -6,19 +6,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
   get: ^4.6.6
   flutter_svg: ^2.0.10+1
-  dio: ^5.4.2
-  json_annotation: ^4.8.1
-  json_serializable: ^6.7.1
-  objectbox: ^2.5.1
+  dio: ^5.7.0
+  json_annotation: ^4.9.0
+  json_serializable: ^6.8.0
+  objectbox: ^4.0.2
   objectbox_flutter_libs: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.2
+  flutter_lints: ^4.0.0
   objectbox_generator: any
   build_runner: ^2.4.8
 

@@ -1,6 +1,6 @@
-import 'package:first_project/main.dart';
 import 'package:objectbox/objectbox.dart';
 
+import '../../main.dart';
 import 'user.dart';
 
 class UserControl {

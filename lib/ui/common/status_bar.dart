@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class StatusBar extends StatefulWidget {
   StatusBar({
-    Key? key,
+    super.key,
     this.color = Colors.transparent,
     this.tintColor = Colors.white,
     required this.onBack,
-  }) : super(key: key);
+  });
+
   Color color;
   Color tintColor;
   VoidCallback onBack;

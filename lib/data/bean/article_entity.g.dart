@@ -7,15 +7,15 @@ part of 'article_entity.dart';
 // **************************************************************************
 
 ArticleData _$ArticleDataFromJson(Map<String, dynamic> json) => ArticleData()
-  ..curPage = json['curPage'] as int
+  ..curPage = (json['curPage'] as num).toInt()
   ..datas = (json['datas'] as List<dynamic>)
       .map((e) => ArticleDataDatas.fromJson(e as Map<String, dynamic>))
       .toList()
-  ..offset = json['offset'] as int
+  ..offset = (json['offset'] as num).toInt()
   ..over = json['over'] as bool
-  ..pageCount = json['pageCount'] as int
-  ..size = json['size'] as int
-  ..total = json['total'] as int;
+  ..pageCount = (json['pageCount'] as num).toInt()
+  ..size = (json['size'] as num).toInt()
+  ..total = (json['total'] as num).toInt();
 
 Map<String, dynamic> _$ArticleDataToJson(ArticleData instance) =>
     <String, dynamic>{
@@ -32,19 +32,19 @@ ArticleDataDatas _$ArticleDataDatasFromJson(Map<String, dynamic> json) =>
     ArticleDataDatas()
       ..adminAdd = json['adminAdd'] as bool
       ..apkLink = json['apkLink'] as String
-      ..audit = json['audit'] as int
+      ..audit = (json['audit'] as num).toInt()
       ..author = json['author'] as String
       ..canEdit = json['canEdit'] as bool
-      ..chapterId = json['chapterId'] as int
+      ..chapterId = (json['chapterId'] as num).toInt()
       ..chapterName = json['chapterName'] as String
       ..collect = json['collect'] as bool
-      ..courseId = json['courseId'] as int
+      ..courseId = (json['courseId'] as num).toInt()
       ..desc = json['desc'] as String
       ..descMd = json['descMd'] as String
       ..envelopePic = json['envelopePic'] as String
       ..fresh = json['fresh'] as bool
       ..host = json['host'] as String
-      ..id = json['id'] as int
+      ..id = (json['id'] as num).toInt()
       ..isAdminAdd = json['isAdminAdd'] as bool
       ..link = json['link'] as String
       ..niceDate = json['niceDate'] as String
@@ -52,19 +52,19 @@ ArticleDataDatas _$ArticleDataDatasFromJson(Map<String, dynamic> json) =>
       ..origin = json['origin'] as String
       ..prefix = json['prefix'] as String
       ..projectLink = json['projectLink'] as String
-      ..publishTime = json['publishTime'] as int
-      ..realSuperChapterId = json['realSuperChapterId'] as int
-      ..selfVisible = json['selfVisible'] as int
-      ..shareDate = json['shareDate'] as int
+      ..publishTime = (json['publishTime'] as num).toInt()
+      ..realSuperChapterId = (json['realSuperChapterId'] as num).toInt()
+      ..selfVisible = (json['selfVisible'] as num).toInt()
+      ..shareDate = (json['shareDate'] as num).toInt()
       ..shareUser = json['shareUser'] as String
-      ..superChapterId = json['superChapterId'] as int
+      ..superChapterId = (json['superChapterId'] as num).toInt()
       ..superChapterName = json['superChapterName'] as String
       ..tags = json['tags'] as List<dynamic>
       ..title = json['title'] as String
-      ..type = json['type'] as int
-      ..userId = json['userId'] as int
-      ..visible = json['visible'] as int
-      ..zan = json['zan'] as int;
+      ..type = (json['type'] as num).toInt()
+      ..userId = (json['userId'] as num).toInt()
+      ..visible = (json['visible'] as num).toInt()
+      ..zan = (json['zan'] as num).toInt();
 
 Map<String, dynamic> _$ArticleDataDatasToJson(ArticleDataDatas instance) =>
     <String, dynamic>{

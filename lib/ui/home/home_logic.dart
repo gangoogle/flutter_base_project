@@ -1,3 +1,4 @@
+import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,11 @@ import 'home_state.dart';
 
 class HomePageLogic extends GetxController {
   final HomePageState state = HomePageState();
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   void resetName() {
     state.name = "new Word";
