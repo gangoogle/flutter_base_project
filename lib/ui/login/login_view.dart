@@ -4,7 +4,6 @@ import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import '../common/space.dart';
 import 'login_logic.dart';
 import 'login_state.dart';
@@ -47,7 +46,10 @@ class LoginPage extends StatelessWidget {
                         state.accountPassword.value = value;
                       }),
                       const Space(height: 50),
-                      ElevatedButton(onPressed: () {}, child: Text('登录'))
+                      ElevatedButton(onPressed: () {}, child: Text('登录')),
+                      ElevatedButton(onPressed: (){
+                        Get.back();
+                      }, child: Text('退出'))
                     ],
                   ),
                 ),
@@ -69,7 +71,7 @@ class LoginPage extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(30)),
             borderSide: BorderSide(color: Colors.amber, width: 2),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.green, width: 5)),
           labelText: lable,
           hintText: "输入$lable",

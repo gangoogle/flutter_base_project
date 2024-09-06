@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'task_list_logic.dart';
 
 class TaskListPage extends StatelessWidget {
