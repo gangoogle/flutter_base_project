@@ -1,5 +1,9 @@
+import 'dart:ffi';
+
 import 'package:first_project/api/api_ext.dart';
+import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/dio_api.dart';
+import 'package:first_project/util/RandomUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../api/dialog_ext.dart';
@@ -11,16 +15,23 @@ class HomePageLogic extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    setUserName();
   }
 
-  void resetName() {
-    state.name = "new Word";
-    update();
+  @override
+  void onReady() {
+    super.onReady();
   }
 
-  void resetNameNext() {
-    state.name = "next word";
-    update();
+  void setUserName() async {
+    state.userName.value = await AppCache.getUserName() ?? "";
+  }
+
+  /// 重新设置用户名
+  void reSaveUserName() {
+    var randomString = generateRandomString(5);
+    state.userName.value = randomString;
+    AppCache.saveUserName(randomString);
   }
 
   void addCountObs() {
@@ -32,7 +43,7 @@ class HomePageLogic extends GetxController {
     showLoadingDialog(context, (dialogContext) => dialog = dialogContext);
     var result = DioApi.login("loginName");
     result.then((value) {
-      state.name = value.datas[0].title;
+      state.requestResult.value = value.datas[0].title;
       update();
     }).catchError((err) {
       print(err.toString());

@@ -7,7 +7,6 @@ import '../common/status_bar.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
-  
   HomePage({super.key});
 
   final logic = Get.put(HomePageLogic());
@@ -25,78 +24,95 @@ class HomePage extends StatelessWidget {
               Get.back();
             },
           ),
-          GetBuilder<HomePageLogic>(
-            builder: (logic) {
-              return Text('${state.name}');
-            },
-          ),
-          InkWell(
-            onTap: () {
-              logic.resetNameNext();
-            },
-            child: Text("updateName"),
-          ),
-          ElevatedButton(
-              onPressed: () => {
-                    Get.toNamed(GetRouteConfig.SETTING,
-                        arguments: {'msg': 'hahaha'})
-                  },
-              child: const Text("jump to setting page")),
-          ElevatedButton(
-              onPressed: () => {
-                    Get.toNamed(GetRouteConfig.LOGIN, arguments: {'login'})
-                  },
-              child: const Text("登录页面")),
-          Obx(() {
-            return ElevatedButton(
-                onPressed: () => {logic.addCountObs()},
-                child: Text(state.count.toString()));
-          }),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                "assets/images/back.svg",
-                width: 50,
-                height: 50,
+          Expanded(
+            flex: 1,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ElevatedButton(onPressed: () async {
+                    var result = await Get.toNamed(GetRouteConfig.SETTING,
+                        arguments: {'msg': 'new params-> '});
+                    Map<String, String> newResult =
+                        result as Map<String, String>;
+                    state.argsText.value = newResult["key"] ?? "xx";
+                  }, child: Obx(() {
+                    return Text("jump to setting page ${state.argsText.value}");
+                  })),
+                  ElevatedButton(
+                      onPressed: () => Get.toNamed(GetRouteConfig.LOGIN,
+                          arguments: {'login'}),
+                      child: const Text("登录页面")),
+                  Obx(() => ElevatedButton(
+                      onPressed: () => logic.addCountObs(),
+                      child: Text(state.count.toString()))),
+                  Obx(() => Text('当前用户名称:${state.userName}')),
+                  ElevatedButton(
+                      onPressed: () => logic.reSaveUserName(),
+                      child: Text("修改用户名称")),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/back.svg",
+                        width: 50,
+                        height: 50,
+                      ),
+                      const Image(
+                        image: AssetImage("assets/images/android.png"),
+                        width: 50,
+                        height: 50,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    color: Colors.blueGrey,
+                    margin: EdgeInsets.all(10),
+                    height: 100,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(Icons.co2, color: Colors.orange),
+                        Icon(Icons.ac_unit, color: Colors.cyan),
+                        Icon(Icons.accessibility_rounded,
+                            color: Colors.deepOrange),
+                      ],
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                          width: 50, height: 30, color: Colors.deepOrange),
+                      Container(width: 30, height: 30, color: Colors.green)
+                    ],
+                  ),
+                  Card(
+                    child: Column(
+                      children: [
+                        ElevatedButton(
+                            onPressed: () => {logic.requestData(context)},
+                            child: Text('请求网络')),
+                        Obx(() {
+                          return Text("请求结果:${state.requestResult.value}");
+                        })
+                      ],
+                    ),
+                  ),
+                  _autoFillParentDivider(),
+                  _cardUI(),
+                  _cardUI(),
+                  _cardUI(),
+                  _cardUI(),
+                ],
               ),
-              const Image(
-                image: AssetImage("assets/images/android.png"),
-                width: 50,
-                height: 50,
-              ),
-            ],
-          ),
-          Container(
-            color: Colors.blueGrey,
-            margin: EdgeInsets.all(10),
-            height: 100,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.co2, color: Colors.orange),
-                Icon(Icons.ac_unit, color: Colors.cyan),
-                Icon(Icons.accessibility_rounded, color: Colors.deepOrange),
-              ],
             ),
           ),
-          Stack(
-            children: [
-              Container(width: 50, height: 30, color: Colors.deepOrange),
-              Container(width: 30, height: 30, color: Colors.green)
-            ],
-          ),
-          ElevatedButton(
-              onPressed: () => {logic.requestData(context)},
-              child: Text('请求网络')),
-          _autoFillParentDivider(),
-          _cardUI(),
         ],
       ),
     );
   }
 
+  ///卡片布局
   Card _cardUI() {
     return Card(
         color: Colors.teal,

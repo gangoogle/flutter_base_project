@@ -14,7 +14,6 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final logic = Get.put(SettingLogic());
     final state = Get.find<SettingLogic>().state;
-    final lastLogic = Get.find<HomePageLogic>();
     return Scaffold(
       body: BasePage(
         child: Container(
@@ -26,15 +25,12 @@ class SettingPage extends StatelessWidget {
               StatusBar(
                   color: Colors.blueAccent,
                   onBack: () {
-                    Get.back();
+                    Get.back(result: {'key': "2"});
                   }),
               Text('setting-page'),
               GetBuilder<SettingLogic>(builder: (logic) {
                 return Text('last page args -> ${state.argsText}');
               }),
-              ElevatedButton(
-                  onPressed: () => {lastLogic.resetNameNext()},
-                  child: Text('给上一个页面传值'))
             ],
           ),
         ),
