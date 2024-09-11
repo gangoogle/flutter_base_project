@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///状态栏
 class StatusBar extends StatefulWidget {
   StatusBar({
     super.key,

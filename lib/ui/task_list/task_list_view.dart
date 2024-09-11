@@ -9,7 +9,6 @@ class TaskListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final logic = Get.put(TaskListLogic());
     final state = Get.find<TaskListLogic>().state;
-
     return Container();
   }
 }

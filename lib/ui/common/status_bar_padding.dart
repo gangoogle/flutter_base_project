@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///状态栏Padding
 class StatusBarPaddingView extends StatefulWidget {
   StatusBarPaddingView({Key? key, this.color = Colors.transparent})
       : super(key: key);

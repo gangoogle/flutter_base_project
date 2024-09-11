@@ -13,8 +13,8 @@ class AppCache {
     });
   }
 
-  static Future<String?> getUserName() async {
+  static Future<String> getUserName() async {
     SharedPreferences app = await getAppCache();
-    return await app.getString(_userName);
+    return (app.getString(_userName) ?? "");
   }
 }

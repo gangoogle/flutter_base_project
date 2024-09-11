@@ -3,7 +3,6 @@ import 'package:first_project/ui/common/status_bar.dart';
 import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../home/home_logic.dart';
 import 'setting_logic.dart';
 
 /// 设置页面
