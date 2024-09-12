@@ -1,4 +1,3 @@
-import 'package:first_project/api/api_ext.dart';
 import 'package:flutter/material.dart';
 
 class BasePage extends StatefulWidget {

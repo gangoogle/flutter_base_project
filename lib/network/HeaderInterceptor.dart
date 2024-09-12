@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
 
-/**
- * 标题拦截器
- */
 class HeaderInterceptor {
   Interceptor create() {
     var interceptor = InterceptorsWrapper(

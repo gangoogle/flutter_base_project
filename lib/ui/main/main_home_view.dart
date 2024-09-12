@@ -7,7 +7,7 @@ import '../../api/keep_alive.dart';
 import 'main_home_logic.dart';
 
 class MainHomePage extends StatelessWidget {
-  const MainHomePage({Key? key}) : super(key: key);
+  const MainHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/util/RandomUtils.dart';

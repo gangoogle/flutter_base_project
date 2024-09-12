@@ -1,8 +1,5 @@
-import 'package:first_project/api/widget_ext.dart';
 import 'package:first_project/ui/common/base_screen.dart';
-import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../common/space.dart';
 import 'login_logic.dart';
@@ -19,42 +16,46 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         body: Container(
           color: Colors.white30,
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: EdgeInsets.all(50),
-                  child: Column(
-                    children: [
-                      const Padding(padding: EdgeInsets.only(top: 50)),
-                      const Space(height: 50),
-                      const Image(
-                        image: AssetImage("assets/images/android.png"),
-                        width: 50,
-                        height: 50,
-                      ),
-                      Obx(() {
-                        return Text(state.accountName.value);
-                      }),
-                      const Space(height: 50),
-                      _inputView("账号", (value) {
-                        state.accountName.value = value;
-                      }),
-                      const Space(height: 50),
-                      _inputView("密码", (value) {
-                        state.accountPassword.value = value;
-                      }),
-                      const Space(height: 50),
-                      ElevatedButton(onPressed: () {}, child: Text('登录')),
-                      ElevatedButton(onPressed: (){
-                        Get.back();
-                      }, child: Text('退出'))
-                    ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    padding: EdgeInsets.all(50),
+                    child: Column(
+                      children: [
+                        const Padding(padding: EdgeInsets.only(top: 50)),
+                        const Space(height: 50),
+                        const Image(
+                          image: AssetImage("assets/images/android.png"),
+                          width: 50,
+                          height: 50,
+                        ),
+                        Obx(() {
+                          return Text(state.accountName.value);
+                        }),
+                        const Space(height: 50),
+                        _inputView("账号", (value) {
+                          state.accountName.value = value;
+                        }),
+                        const Space(height: 50),
+                        _inputView("密码", (value) {
+                          state.accountPassword.value = value;
+                        }),
+                        const Space(height: 50),
+                        ElevatedButton(onPressed: () {}, child: Text('登录')),
+                        ElevatedButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text('退出'))
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -72,7 +73,7 @@ class LoginPage extends StatelessWidget {
             borderSide: BorderSide(color: Colors.amber, width: 2),
           ),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.green, width: 5)),
+              borderSide: BorderSide(color: Colors.green, width: 2)),
           labelText: lable,
           hintText: "输入$lable",
           prefixIcon: const Icon(Icons.headphones)),
