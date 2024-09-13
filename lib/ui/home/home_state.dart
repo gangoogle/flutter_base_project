@@ -5,6 +5,7 @@ class HomePageState {
   var userName = "".obs;
   var requestResult = "".obs;
   var argsText = "".obs;
+  var buttonVisible = true.obs;
 
   HomePageState() {}
 }

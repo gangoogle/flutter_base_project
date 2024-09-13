@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class MainHomeState {
-  int selectIndex = 0;
+  var selectIndex = 0.obs;
   var pageControl = PageController(initialPage: 0, keepPage: true);
 
-  MainHomeState() {
-    ///Initialize variables
-  }
+  MainHomeState() {}
 }

@@ -1,3 +1,4 @@
+import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/main.dart';
 import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-
   final logic = Get.put(HomePageLogic());
   final state = Get.find<HomePageLogic>().state;
 
@@ -17,9 +17,9 @@ class HomePage extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          StatusBarPaddingView(color: Colors.blue),
+          StatusBarPaddingView(color: "#3b3b3b".color),
           StatusBar(
-            color: Colors.blue,
+            color: "#3b3b3b".color,
             onBack: () {
               Get.back();
             },
@@ -64,19 +64,20 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    color: Colors.blueGrey,
+                  Card(
+                    color: "#2f2f2f".color,
                     margin: EdgeInsets.all(10),
-                    height: 100,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.co2, color: Colors.orange),
-                        Icon(Icons.ac_unit, color: Colors.cyan),
-                        Icon(Icons.accessibility_rounded,
-                            color: Colors.deepOrange),
-                      ],
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.co2, color: Colors.blue),
+                          Icon(Icons.ac_unit, color: Colors.cyan),
+                          Icon(Icons.sailing, color: Colors.deepOrange),
+                        ],
+                      ),
                     ),
                   ),
                   Stack(
@@ -100,9 +101,7 @@ class HomePage extends StatelessWidget {
                   ),
                   _autoFillParentDivider(),
                   _cardUI(),
-                  _cardUI(),
-                  _cardUI(),
-                  _cardUI(),
+                  _visibleAnim(),
                 ],
               ),
             ),
@@ -110,6 +109,42 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  //渐隐动画
+  Widget _visibleAnim() {
+    return Column(children: <Widget>[
+      ElevatedButton(
+          onPressed: () =>
+              {state.buttonVisible.value = !state.buttonVisible.value},
+          child: Text("按钮显示")),
+      Obx(() {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              flex: 1,
+              child: AnimatedOpacity(
+                opacity: state.buttonVisible.value ? 1.0 : 0.0,
+                duration: Duration(milliseconds: 1000),
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 1000),
+              color:
+                  state.buttonVisible.value ? Colors.green : Colors.blueAccent,
+              width: state.buttonVisible.value ? 50 : 100,
+              height: state.buttonVisible.value ? 50 : 100,
+            ),
+          ],
+        );
+      })
+    ]);
   }
 
   ///卡片布局

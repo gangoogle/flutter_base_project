@@ -8,11 +8,26 @@ import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:first_project/data/database/object_box.dart';
+import 'dart:ui';
 
-late ObjectBox objectbox;
+// late ObjectBox objectbox;
 
 void main() {
+  //如果size是0，则设置回调，在回调中runApp
+  if (window.physicalSize.isEmpty) {
+    window.onMetricsChanged = () {
+      //在回调中，size仍然有可能是0
+      if (!window.physicalSize.isEmpty) {
+        window.onMetricsChanged = null;
+        _run();
+      }
+    };
+  } else {
+    _run();
+  }
+}
+
+void _run() {
   _initStatusBar();
   _initObjectBox();
   DioApi.init();
@@ -28,8 +43,8 @@ void _initStatusBar() {
 }
 
 void _initObjectBox() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  objectbox = await ObjectBox.create();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // objectbox = await ObjectBox.create();
 }
 
 class MyApp extends StatelessWidget {

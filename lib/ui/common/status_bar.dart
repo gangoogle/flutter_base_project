@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
 
 ///状态栏
-
 class StatusBar extends StatefulWidget {
   StatusBar({
     super.key,

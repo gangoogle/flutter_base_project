@@ -12,15 +12,15 @@ dependencies:
   dio: ^5.7.0
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
-  objectbox: ^4.0.2
-  objectbox_flutter_libs: any
+#  objectbox: ^4.0.2
+#  objectbox_flutter_libs: any
   shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  objectbox_generator: any
+#  objectbox_generator: any
   build_runner: ^2.4.8
 
 
