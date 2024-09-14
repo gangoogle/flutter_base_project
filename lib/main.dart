@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
 
-// late ObjectBox objectbox;
+late ObjectBox objectbox;
 
 void main() {
   //如果size是0，则设置回调，在回调中runApp
