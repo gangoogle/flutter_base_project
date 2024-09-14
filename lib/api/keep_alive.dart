@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class KeepAliveWrapper extends StatefulWidget {
-  const KeepAliveWrapper({
+class PagerKeepAliveWrapper extends StatefulWidget {
+  const PagerKeepAliveWrapper({
     super.key,
     this.keepAlive = true,
     required this.child,
@@ -10,10 +10,10 @@ class KeepAliveWrapper extends StatefulWidget {
   final Widget child;
 
   @override
-  _KeepAliveWrapperState createState() => _KeepAliveWrapperState();
+  _PagerKeepAliveWrapperState createState() => _PagerKeepAliveWrapperState();
 }
 
-class _KeepAliveWrapperState extends State<KeepAliveWrapper>
+class _PagerKeepAliveWrapperState extends State<PagerKeepAliveWrapper>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _KeepAliveWrapperState extends State<KeepAliveWrapper>
   }
 
   @override
-  void didUpdateWidget(covariant KeepAliveWrapper oldWidget) {
+  void didUpdateWidget(covariant PagerKeepAliveWrapper oldWidget) {
     if (oldWidget.keepAlive != widget.keepAlive) {
       // keepAlive 状态需要更新，实现在 AutomaticKeepAliveClientMixin 中
       updateKeepAlive();

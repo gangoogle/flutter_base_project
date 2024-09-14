@@ -18,8 +18,8 @@ class MainHomePage extends StatelessWidget {
         controller: state.pageControl,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          KeepAliveWrapper(child: HomePage()),
-          const KeepAliveWrapper(child: MePage()),
+          PagerKeepAliveWrapper(child: HomePage()),
+          const PagerKeepAliveWrapper(child: MePage()),
         ],
       ),
       bottomNavigationBar: Obx(() {
