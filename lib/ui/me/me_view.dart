@@ -1,7 +1,5 @@
-import 'dart:math';
 import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/api/widget_ext.dart';
-import 'package:first_project/data/bean/ItemData.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../common/space.dart';
@@ -28,20 +26,9 @@ class MePage extends StatelessWidget {
           flex: 1,
         ),
         Expanded(
-          child: Container(color: Colors.blueGrey, child: _buildGridView()),
+          child: Container(color: "#e8eaed".color, child: _buildGridView()),
           flex: 1,
         ),
-        ElevatedButton(
-            onPressed: () {
-              logic.addListWords();
-            },
-            child: Text("列表添加数据")),
-        GetBuilder<MeLogic>(builder: (logic) {
-          return Expanded(
-            child: Container(child: _buildListGridView(state.gridViewList)),
-            flex: 1,
-          );
-        })
       ]),
     );
   }
@@ -168,24 +155,9 @@ class MePage extends StatelessWidget {
 
   GridView _buildGridView() {
     return GridView.count(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         children: List.generate(100, (index) {
           return Center(child: Text("${index}"));
         }));
-  }
-
-  GridView _buildListGridView(List<ItemData> list) {
-    return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return Container(
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.all(5),
-              color: list[index].bgColor,
-              child: Center(child: Text("${list[index].text}")));
-        });
   }
 }

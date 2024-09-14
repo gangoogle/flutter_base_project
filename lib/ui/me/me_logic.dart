@@ -16,9 +16,4 @@ class MeLogic extends GetxController {
     state.test--;
     update();
   }
-
-  void addListWords() {
-    state.gridViewList.add(ItemData(generateRandomString(5), getRandomColor()));
-    update();
-  }
 }

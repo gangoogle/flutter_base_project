@@ -9,6 +9,7 @@ import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
+
   final logic = Get.put(HomePageLogic());
   final state = Get.find<HomePageLogic>().state;
 
@@ -27,82 +28,90 @@ class HomePage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ElevatedButton(onPressed: () async {
-                    var result = await Get.toNamed(GetRouteConfig.SETTING,
-                        arguments: {'msg': 'new params-> '});
-                    Map<String, String> newResult =
-                        result as Map<String, String>;
-                    state.argsText.value = newResult["key"] ?? "xx";
-                  }, child: Obx(() {
-                    return Text("jump to setting page ${state.argsText.value}");
-                  })),
-                  ElevatedButton(
-                      onPressed: () => Get.toNamed(GetRouteConfig.LOGIN,
-                          arguments: {'login'}),
-                      child: const Text("登录页面")),
-                  Obx(() => ElevatedButton(
-                      onPressed: () => logic.addCountObs(),
-                      child: Text(state.count.toString()))),
-                  Obx(() => Text('当前用户名称:${state.userName}')),
-                  ElevatedButton(
-                      onPressed: () => logic.reSaveUserName(),
-                      child: Text("修改用户名称")),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        "assets/images/back.svg",
-                        width: 50,
-                        height: 50,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    ElevatedButton(onPressed: () async {
+                      var result = await Get.toNamed(GetRouteConfig.SETTING,
+                          arguments: {'msg': 'new params-> '});
+                      Map<String, String> newResult =
+                          result as Map<String, String>;
+                      state.argsText.value = newResult["key"] ?? "xx";
+                    }, child: Obx(() {
+                      return Text(
+                          "jump to setting page ${state.argsText.value}");
+                    })),
+                    ElevatedButton(
+                        onPressed: () => Get.toNamed(GetRouteConfig.LOGIN,
+                            arguments: {'login'}),
+                        child: const Text("登录页面")),
+                    ElevatedButton(
+                        onPressed: () => Get.toNamed(GetRouteConfig.LIST),
+                        child: Text("gridViewPage")),
+                    Obx(() => ElevatedButton(
+                        onPressed: () => logic.addCountObs(),
+                        child: Text(state.count.toString()))),
+                    Obx(() => Text('当前用户名称:${state.userName}')),
+                    ElevatedButton(
+                        onPressed: () => logic.reSaveUserName(),
+                        child: Text("修改用户名称")),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/back.svg",
+                          width: 50,
+                          height: 50,
+                        ),
+                        const Image(
+                          image: AssetImage("assets/images/android.png"),
+                          width: 50,
+                          height: 50,
+                        ),
+                      ],
+                    ),
+                    Card(
+                      color: "#2f2f2f".color,
+                      margin: EdgeInsets.all(10),
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.co2, color: Colors.blue),
+                            Icon(Icons.ac_unit, color: Colors.cyan),
+                            Icon(Icons.sailing, color: Colors.deepOrange),
+                          ],
+                        ),
                       ),
-                      const Image(
-                        image: AssetImage("assets/images/android.png"),
-                        width: 50,
-                        height: 50,
-                      ),
-                    ],
-                  ),
-                  Card(
-                    color: "#2f2f2f".color,
-                    margin: EdgeInsets.all(10),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                            width: 50, height: 30, color: Colors.deepOrange),
+                        Container(width: 30, height: 30, color: Colors.green)
+                      ],
+                    ),
+                    Card(
+                      child: Column(
                         children: [
-                          Icon(Icons.co2, color: Colors.blue),
-                          Icon(Icons.ac_unit, color: Colors.cyan),
-                          Icon(Icons.sailing, color: Colors.deepOrange),
+                          ElevatedButton(
+                              onPressed: () => {logic.requestData(context)},
+                              child: Text('请求网络')),
+                          Obx(() {
+                            return Text("请求结果:${state.requestResult.value}");
+                          })
                         ],
                       ),
                     ),
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                          width: 50, height: 30, color: Colors.deepOrange),
-                      Container(width: 30, height: 30, color: Colors.green)
-                    ],
-                  ),
-                  Card(
-                    child: Column(
-                      children: [
-                        ElevatedButton(
-                            onPressed: () => {logic.requestData(context)},
-                            child: Text('请求网络')),
-                        Obx(() {
-                          return Text("请求结果:${state.requestResult.value}");
-                        })
-                      ],
-                    ),
-                  ),
-                  _autoFillParentDivider(),
-                  _cardUI(),
-                  _visibleAnim(),
-                ],
+                    _autoFillParentDivider(),
+                    _cardUI(),
+                    _visibleAnim(),
+                    _visibleAnim(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -139,6 +148,14 @@ class HomePage extends StatelessWidget {
               color:
                   state.buttonVisible.value ? Colors.green : Colors.blueAccent,
               width: state.buttonVisible.value ? 50 : 100,
+              height: state.buttonVisible.value ? 50 : 100,
+            ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 1000),
+              color: state.buttonVisible.value
+                  ? Colors.deepOrangeAccent
+                  : Colors.purple,
+              width: state.buttonVisible.value ? 100 : 50,
               height: state.buttonVisible.value ? 50 : 100,
             ),
           ],

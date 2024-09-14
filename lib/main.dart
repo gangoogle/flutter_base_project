@@ -1,6 +1,7 @@
 import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/ui/home/home_view.dart';
+import 'package:first_project/ui/list/list_view.dart';
 import 'package:first_project/ui/login/login_view.dart';
 import 'package:first_project/ui/main/main_home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
@@ -94,6 +95,7 @@ class GetRouteConfig {
   static const String ME = "/me";
   static const String SETTING = "/setting";
   static const String LOGIN = "/login";
+  static const String LIST = "/list";
 
   static List<GetPage> getPages() {
     return [
@@ -104,7 +106,8 @@ class GetRouteConfig {
       GetPage(name: HOME, page: () => HomePage()),
       GetPage(name: SETTING, page: () => SettingPage()),
       GetPage(name: ME, page: () => MePage()),
-      GetPage(name: LOGIN, page: () => LoginPage())
+      GetPage(name: LOGIN, page: () => LoginPage()),
+      GetPage(name: LIST, page: () => ListPage())
     ];
   }
 }

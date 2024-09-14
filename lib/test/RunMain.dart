@@ -25,6 +25,8 @@ void main() {
   var boxB = Box<int>(40);
   var boxC = Box<String>("boxC");
   print('${boxA.name} ${boxB.name} ${boxC.name}');
+  int b = 30;
+
   int intA = 23;
   double doubleA = 23.3;
   bool boolA = true;
@@ -68,38 +70,6 @@ void main() {
   if (personBaby is Baby) {
     personBaby.sayBaby();
   }
-
-  // Future(() {
-  //   return "future value";
-  // }).then((value) {
-  //   print("then1 value-> $value");
-  //   throw Exception("error->");
-  //   return "then return value";
-  // }, onError: (e) {
-  //   print("then1 error-> $e");
-  // }).then((value) {
-  //   print("then2 value-> $value");
-  // }, onError: (e) {
-  //   print("then2 error $e");
-  // }).whenComplete(() {
-  //   print("complete");
-  // });
-
-  print("------------------------------");
-  // Future.sync(() {
-  //   print("sync start");
-  //   sleep(Duration(milliseconds: 2000));
-  //   throw Exception("error message");
-  //   return "sync value return";
-  // }).then((value) {
-  //   print("then-> $value");
-  // }, onError: (e) {
-  //   print('onError 2 ');
-  // }).onError((e, x) {
-  //   print('onError 3');
-  // }).whenComplete(() {
-  //   print("complete");
-  // });
   doTask();
 }
 
