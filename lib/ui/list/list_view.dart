@@ -1,7 +1,7 @@
 import 'package:first_project/ui/common/status_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../data/bean/ItemData.dart';
+import '../../data/bean/Item_data.dart';
 import 'list_logic.dart';
 import 'list_state.dart';
 

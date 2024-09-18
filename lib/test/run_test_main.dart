@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
-import 'Box.dart';
-import 'Person.dart';
+import 'box.dart';
+import 'person.dart';
 
 void main() {
   var person = Person('tom', 20);

@@ -22,12 +22,12 @@ class MePage extends StatelessWidget {
         const Space(height: 10),
         _buildCard(),
         Expanded(
+          flex: 2,
           child: Container(color: Colors.lightGreen, child: _buildList()),
-          flex: 1,
         ),
         Expanded(
           child: Container(color: "#e8eaed".color, child: _buildGridView()),
-          flex: 1,
+          flex: 5,
         ),
       ]),
     );

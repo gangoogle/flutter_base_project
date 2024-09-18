@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+///字符串转color
 extension StringExt on String {
   Color get color => hexColorString(this);
 }
 
+/// 16进制颜色转color
 Color hexColorString(String hexColor) {
   Color color = Color(getColorFromHex(hexColor));
   return color;
 }
 
+/// 16进制颜色转int
 int getColorFromHex(String hexColor) {
   if (hexColor.startsWith("#")) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
@@ -22,6 +25,7 @@ int getColorFromHex(String hexColor) {
   return int.parse(hexColor, radix: 16);
 }
 
+/// 修改状态栏颜色模式
 void setStatusColor(bool isDarkMode) {
   var brightness = Brightness.light;
   if (isDarkMode) {

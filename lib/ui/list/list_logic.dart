@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../data/bean/ItemData.dart';
-import '../../util/RandomUtils.dart';
+import '../../data/bean/Item_data.dart';
+import '../../util/random_utils.dart';
 import 'list_state.dart';
 
 class ListLogic extends GetxController {

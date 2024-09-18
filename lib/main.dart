@@ -1,4 +1,5 @@
 import 'package:first_project/api/api_ext.dart';
+import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/ui/home/home_view.dart';
 import 'package:first_project/ui/list/list_view.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
+import 'data/database/object_box.dart';
 
 late ObjectBox objectbox;
 
@@ -32,6 +34,7 @@ void _run() {
   _initStatusBar();
   _initObjectBox();
   DioApi.init();
+  AppCache.init();
   runApp(const MyApp());
 }
 

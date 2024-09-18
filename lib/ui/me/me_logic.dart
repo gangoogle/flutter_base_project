@@ -1,5 +1,5 @@
-import 'package:first_project/data/bean/ItemData.dart';
-import 'package:first_project/util/RandomUtils.dart';
+import 'package:first_project/data/bean/Item_data.dart';
+import 'package:first_project/util/random_utils.dart';
 import 'package:get/get.dart';
 
 import 'me_state.dart';

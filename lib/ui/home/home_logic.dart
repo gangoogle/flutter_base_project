@@ -1,6 +1,6 @@
 import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/dio_api.dart';
-import 'package:first_project/util/RandomUtils.dart';
+import 'package:first_project/util/random_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../api/dialog_ext.dart';
