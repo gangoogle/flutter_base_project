@@ -20,35 +20,38 @@ class ListPage extends StatelessWidget {
               onBack: () {
                 Get.back();
               },
-              color: Colors.black,
+              color: Colors.green,
               openStatusPadding: true),
           ElevatedButton(
-              onPressed: () => logic.addListWords, child: Text("insert")),
-          GetBuilder<ListLogic>(builder: (logic) {
-            return Container(
-              child: Expanded(
-                child: _buildListGridView(state.gridViewList),
-                flex: 1,
-              ),
-            );
-          }),
+              onPressed: () {
+                print("new pressed");
+                logic.addListWords;
+              },
+              child: Text("new")),
+          Expanded(
+            flex: 1,
+            child: _buildListGridView(),
+          ),
         ],
       ),
     );
   }
 
-  GridView _buildListGridView(List<ItemData> list) {
-    return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-        ),
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return Container(
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.all(5),
-              color: list[index].bgColor,
-              child: Center(child: Text("${list[index].text}")));
-        });
+  Widget _buildListGridView() {
+    final ListState state = Get.find<ListLogic>().state;
+    return Obx(() {
+      return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+          ),
+          itemCount: state.gridViewList.length,
+          itemBuilder: (context, index) {
+            return Container(
+                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.all(5),
+                color: state.gridViewList[index].bgColor,
+                child: Center(child: Text("${state.gridViewList[index].text}")));
+          });
+    });
   }
 }

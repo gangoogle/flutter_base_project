@@ -4,5 +4,5 @@ import 'package:get/get.dart';
 class ObjectBoxTestState {
   var data = <User>[].obs;
 
-  ObjectBoxTestState() {}
+  ObjectBoxTestState();
 }

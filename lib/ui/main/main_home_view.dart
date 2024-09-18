@@ -1,3 +1,4 @@
+import 'package:first_project/ui/common/space.dart';
 import 'package:first_project/ui/home/home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,31 @@ class MainHomePage extends StatelessWidget {
           PagerKeepAliveWrapper(child: HomePage()),
           const PagerKeepAliveWrapper(child: MePage()),
         ],
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.white54,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                Space(height: 100),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("抽屉1"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("抽屉2"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("抽屉3"),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(

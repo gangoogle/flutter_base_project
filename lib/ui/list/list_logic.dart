@@ -14,18 +14,22 @@ class ListLogic extends GetxController {
   }
 
   void initData() {
+    var tempList = <ItemData>[];
     for (int i = 0; i < 100; i++) {
-      state.gridViewList
-          .add(ItemData(generateRandomString(5), getRandomColor()));
+      tempList.add(ItemData(generateRandomString(5), getRandomColor()));
     }
-    update();
+    state.gridViewList.clear();
+    state.gridViewList.addAll(tempList);
   }
 
   void addListWords() {
+    print("addListWords ->");
+    var tempList = <ItemData>[];
     for (int i = 0; i < 20; i++) {
-      state.gridViewList
-          .add(ItemData(generateRandomString(5), getRandomColor()));
+      tempList.add(ItemData(generateRandomString(5), getRandomColor()));
     }
-    update();
+    state.gridViewList.addAll(tempList);
+    print("addListWords length :${state.gridViewList.length}");
+    state.gridViewList.refresh();
   }
 }

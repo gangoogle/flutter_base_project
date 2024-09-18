@@ -1,17 +1,10 @@
 import 'package:first_project/api/api_ext.dart';
-import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/route_config.dart';
-import 'package:first_project/ui/home/home_view.dart';
-import 'package:first_project/ui/list/list_view.dart';
-import 'package:first_project/ui/login/login_view.dart';
 import 'package:first_project/ui/main/main_home_view.dart';
-import 'package:first_project/ui/me/me_view.dart';
-import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:toastification/toastification.dart';
 import 'dart:ui';
 import 'database/object_box.dart';

@@ -26,8 +26,8 @@ class MePage extends StatelessWidget {
           child: Container(color: Colors.lightGreen, child: _buildList()),
         ),
         Expanded(
-          child: Container(color: "#e8eaed".color, child: _buildGridView()),
           flex: 5,
+          child: Container(color: "#e8eaed".color, child: _buildGridView()),
         ),
       ]),
     );
@@ -89,11 +89,7 @@ class MePage extends StatelessWidget {
                     logic.updateMinus();
                   },
                   child: Column(
-                    children: [
-                      Icon(Icons.adb),
-                      Space(height: 10),
-                      Text("${logic.state.test}")
-                    ],
+                    children: [Icon(Icons.adb), Space(height: 10), Text("${logic.state.test}")],
                   ),
                 );
               }),
@@ -106,11 +102,7 @@ class MePage extends StatelessWidget {
                     logic.updatePlus();
                   },
                   child: Column(
-                    children: [
-                      Icon(Icons.adb),
-                      Space(height: 10),
-                      Text("${logic.state.test}")
-                    ],
+                    children: [Icon(Icons.adb), Space(height: 10), Text("${logic.state.test}")],
                   ),
                 );
               }),
@@ -136,16 +128,16 @@ class MePage extends StatelessWidget {
       scrollDirection: Axis.vertical,
       children: [
         Container(
-          child: ListTile(
+          child: const ListTile(
             leading: Icon(Icons.info),
             title: Text('关于我们'),
           ),
         ),
-        ListTile(
+        const ListTile(
           leading: Icon(Icons.settings),
           title: Text('设置'),
         ),
-        ListTile(
+        const ListTile(
           leading: Icon(Icons.cached),
           title: Text('缓存'),
         ),
