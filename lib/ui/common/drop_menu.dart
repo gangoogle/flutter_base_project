@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ///下拉菜单
 class DropMenu extends StatefulWidget {
-  const DropMenu({Key? key}) : super(key: key);
+  const DropMenu({super.key});
 
   @override
   _DropMenuState createState() => _DropMenuState();

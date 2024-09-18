@@ -15,6 +15,9 @@ dependencies:
   objectbox: ^4.0.2
   objectbox_flutter_libs: any
   shared_preferences: ^2.3.2
+  cached_network_image: ^3.4.1
+  path_provider: ^2.1.4
+  toastification: ^2.2.0
 
 dev_dependencies:
   flutter_test:

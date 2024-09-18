@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,11 @@ class HomePage extends StatelessWidget {
                             arguments: {'login'}),
                         child: const Text("登录页面")),
                     ElevatedButton(
+                        onPressed: () => Get.toNamed(
+                            RouteConfig.OBJECT_BOX_TEST,
+                            arguments: {'login'}),
+                        child: const Text("objectBox测试")),
+                    ElevatedButton(
                         onPressed: () => Get.toNamed(RouteConfig.LIST),
                         child: Text("gridViewPage")),
                     Obx(() => ElevatedButton(
@@ -94,22 +100,31 @@ class HomePage extends StatelessWidget {
                         Container(width: 30, height: 30, color: Colors.green)
                       ],
                     ),
-                    Card(
-                      child: Column(
-                        children: [
-                          ElevatedButton(
-                              onPressed: () => {logic.requestData(context)},
-                              child: Text('请求网络')),
-                          Obx(() {
-                            return Text("请求结果:${state.requestResult.value}");
-                          })
-                        ],
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () => {logic.requestData(context)},
+                                  child: Text('请求网络')),
+                              Obx(() {
+                                return Text(
+                                    "请求结果:${state.requestResult.value}");
+                              })
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     _autoFillParentDivider(),
                     _cardUI(),
                     _visibleAnim(),
                     _visibleAnim(),
+                    _cacheImg(),
+                    _cacheImg2(),
                   ],
                 ),
               ),
@@ -117,6 +132,25 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _cacheImg2() {
+    return SizedBox(
+        width: 100,
+        height: 100,
+        child: CachedNetworkImage(
+            imageUrl:
+                "https://docs.flutter.cn/assets/images/cn/flutter-cn-logo.png"));
+  }
+
+  Widget _cacheImg() {
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: CachedNetworkImage(
+          imageUrl:
+              "https://img2.baidu.com/it/u=1863038817,1459789936&fm=253&fmt=auto&app=138&f=JPEG?w=542&h=191"),
     );
   }
 

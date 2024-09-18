@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:first_project/network/result_interceptor.dart';
 import 'package:first_project/network/url_constant.dart';
 import '../data/bean/article_entity.dart';
 import 'header_interceptor.dart';
 
+///请求框架
 class DioApi {
   DioApi();
 
@@ -12,6 +14,7 @@ class DioApi {
   ));
 
   static void init() {
-    dio.interceptors.add(HeaderInterceptor().create());
+    dio.interceptors.add(HeaderInterceptor());
+    dio.interceptors.add(ResultInterceptor());
   }
 }

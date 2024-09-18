@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 ///状态栏Padding
 class StatusBarPaddingView extends StatefulWidget {
-  StatusBarPaddingView({super.key, this.color = Colors.transparent});
+  const StatusBarPaddingView({super.key, this.color = Colors.transparent});
 
-  late Color color;
+  final Color color;
 
   @override
   _StatusBarPaddingViewState createState() => _StatusBarPaddingViewState();

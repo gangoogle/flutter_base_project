@@ -15,8 +15,7 @@ ArticleData _$ArticleDataFromJson(Map<String, dynamic> json) => ArticleData()
   ..over = json['over'] as bool
   ..pageCount = (json['pageCount'] as num).toInt()
   ..size = (json['size'] as num).toInt()
-  ..total = (json['total'] as num).toInt()
-  ..name = json['name'] as String;
+  ..total = (json['total'] as num).toInt();
 
 Map<String, dynamic> _$ArticleDataToJson(ArticleData instance) =>
     <String, dynamic>{
@@ -27,7 +26,6 @@ Map<String, dynamic> _$ArticleDataToJson(ArticleData instance) =>
       'pageCount': instance.pageCount,
       'size': instance.size,
       'total': instance.total,
-      'name': instance.name,
     };
 
 ArticleDataDatas _$ArticleDataDatasFromJson(Map<String, dynamic> json) =>

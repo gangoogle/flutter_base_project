@@ -3,6 +3,7 @@ import 'package:first_project/ui/list/list_view.dart';
 import 'package:first_project/ui/login/login_view.dart';
 import 'package:first_project/ui/main/main_home_view.dart';
 import 'package:first_project/ui/me/me_view.dart';
+import 'package:first_project/ui/object_box_test/object_box_test_view.dart';
 import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -14,6 +15,7 @@ class RouteConfig {
   static const String SETTING = "/setting";
   static const String LOGIN = "/login";
   static const String LIST = "/list";
+  static const String OBJECT_BOX_TEST = "/object_test";
 
   static List<GetPage> getPages() {
     return [
@@ -25,7 +27,8 @@ class RouteConfig {
       GetPage(name: SETTING, page: () => SettingPage()),
       GetPage(name: ME, page: () => MePage()),
       GetPage(name: LOGIN, page: () => LoginPage()),
-      GetPage(name: LIST, page: () => ListPage())
+      GetPage(name: LIST, page: () => ListPage()),
+      GetPage(name: OBJECT_BOX_TEST, page: () => ObjectBoxTestPage()),
     ];
   }
 }

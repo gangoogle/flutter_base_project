@@ -11,6 +11,8 @@ import 'package:first_project/ui/setting/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:toastification/toastification.dart';
 import 'dart:ui';
 import 'database/object_box.dart';
 
@@ -35,7 +37,6 @@ void _run() {
   _initStatusBar();
   _initObjectBox();
   DioApi.init();
-  AppCache.init();
   runApp(const MyApp());
 }
 
@@ -48,8 +49,8 @@ void _initStatusBar() {
 }
 
 void _initObjectBox() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // objectbox = await ObjectBox.create();
+  WidgetsFlutterBinding.ensureInitialized();
+  objectbox = await ObjectBox.create();
 }
 
 class MyApp extends StatelessWidget {
@@ -57,19 +58,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      debugShowMaterialGrid: false,
-      title: 'Flutter Demo',
-      getPages: RouteConfig.getPages(),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ToastificationWrapper(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        debugShowMaterialGrid: false,
+        title: 'Flutter Demo',
+        getPages: RouteConfig.getPages(),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const MainHomePage(),
+        routingCallback: (routing) {
+          updateStatusBar(routing?.current ?? "");
+        },
       ),
-      home: const MainHomePage(),
-      routingCallback: (routing) {
-        updateStatusBar(routing?.current ?? "");
-      },
     );
   }
 }

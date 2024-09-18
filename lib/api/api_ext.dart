@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toastification/toastification.dart';
 
 ///字符串转color
 extension StringExt on String {
@@ -40,4 +41,12 @@ void setStatusColor(bool isDarkMode) {
     // 状态栏图标亮度
     statusBarIconBrightness: brightness,
   ));
+}
+
+void showErrorToast(String text) {
+  toastification.show(
+      alignment: Alignment.bottomCenter,
+      type: ToastificationType.error,
+      autoCloseDuration: const Duration(seconds: 3),
+      title: Text(text));
 }
