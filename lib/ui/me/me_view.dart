@@ -7,7 +7,7 @@ import '../common/status_bar_padding.dart';
 import 'me_logic.dart';
 
 class MePage extends StatelessWidget {
-  const MePage({Key? key}) : super(key: key);
+  const MePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +39,13 @@ class MePage extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Space(width: 10),
+          const Space(width: 10),
           const Image(
             image: AssetImage('assets/images/android.png'),
             width: 70,
             height: 70,
           ),
-          Space(width: 10),
+          const Space(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -111,7 +111,7 @@ class MePage extends StatelessWidget {
               flex: 1,
               child: InkWell(
                 onTap: () {},
-                child: Column(
+                child: const Column(
                   children: [Icon(Icons.adb), Space(height: 10), Text("手电筒")],
                 ),
               ),

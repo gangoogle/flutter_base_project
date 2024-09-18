@@ -5,6 +5,7 @@ import '../../data/bean/Item_data.dart';
 import 'list_logic.dart';
 import 'list_state.dart';
 
+///列表页面
 class ListPage extends StatelessWidget {
   const ListPage({super.key});
 

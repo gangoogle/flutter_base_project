@@ -1,12 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
 
-/**
- * 获取随机字符串
- */
+/// 获取随机字符串
 String generateRandomString(int length) {
-  const characters =
-      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   Random random = Random();
   return String.fromCharCodes(
     Iterable.generate(
@@ -16,9 +13,7 @@ String generateRandomString(int length) {
   );
 }
 
-/**
- * 获取随机颜色
- */
+/// 获取随机颜色
 Color getRandomColor() {
   Random random = Random();
   return Color.fromARGB(

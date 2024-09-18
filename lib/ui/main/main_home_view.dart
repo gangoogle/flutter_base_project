@@ -26,21 +26,21 @@ class MainHomePage extends StatelessWidget {
       drawer: Drawer(
         child: Container(
           color: Colors.white54,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
+          child: const Padding(
+            padding: EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Space(height: 100),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text("抽屉1"),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text("抽屉2"),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text("抽屉3"),
                 ),
               ],
