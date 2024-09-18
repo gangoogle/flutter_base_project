@@ -14,34 +14,34 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'data/database/user.dart';
+import '../database/user.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 1647137681013274126),
+      id: const obx_int.IdUid(1, 2895492920058218051),
       name: 'User',
-      lastPropertyId: const obx_int.IdUid(4, 3960307103838520859),
+      lastPropertyId: const obx_int.IdUid(4, 5595472857569233129),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 1972266512966800170),
+            id: const obx_int.IdUid(1, 2075717609071799839),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 7272001886708396767),
+            id: const obx_int.IdUid(2, 6644597736792761208),
             name: 'text',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 7804690310320443406),
+            id: const obx_int.IdUid(3, 399685282208731208),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 3960307103838520859),
+            id: const obx_int.IdUid(4, 5595472857569233129),
             name: 'comment',
             type: 9,
             flags: 0)
@@ -85,7 +85,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 1647137681013274126),
+      lastEntityId: const obx_int.IdUid(1, 2895492920058218051),
       lastIndexId: const obx_int.IdUid(0, 0),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),

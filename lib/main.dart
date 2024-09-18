@@ -1,6 +1,7 @@
 import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/dio_api.dart';
+import 'package:first_project/route_config.dart';
 import 'package:first_project/ui/home/home_view.dart';
 import 'package:first_project/ui/list/list_view.dart';
 import 'package:first_project/ui/login/login_view.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
-import 'data/database/object_box.dart';
+import 'database/object_box.dart';
 
 late ObjectBox objectbox;
 
@@ -60,14 +61,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
       title: 'Flutter Demo',
-      getPages: GetRouteConfig.getPages(),
+      getPages: RouteConfig.getPages(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MainHomePage(),
       routingCallback: (routing) {
-        print("更新路由-> ${routing?.current ?? ""}");
         updateStatusBar(routing?.current ?? "");
       },
     );
@@ -77,40 +77,16 @@ class MyApp extends StatelessWidget {
 /// 修改状态栏
 void updateStatusBar(String route) {
   switch (route) {
-    case GetRouteConfig.ROOT:
+    case RouteConfig.ROOT:
       setStatusColor(false);
       break;
-    case GetRouteConfig.LOGIN:
+    case RouteConfig.LOGIN:
       setStatusColor(true);
       break;
-    case GetRouteConfig.SETTING:
+    case RouteConfig.SETTING:
       setStatusColor(false);
       break;
     default:
       setStatusColor(false);
-  }
-}
-
-/// 路由
-class GetRouteConfig {
-  static const String ROOT = "/";
-  static const String HOME = "/home";
-  static const String ME = "/me";
-  static const String SETTING = "/setting";
-  static const String LOGIN = "/login";
-  static const String LIST = "/list";
-
-  static List<GetPage> getPages() {
-    return [
-      GetPage(
-        name: ROOT,
-        page: () => MainHomePage(),
-      ),
-      GetPage(name: HOME, page: () => HomePage()),
-      GetPage(name: SETTING, page: () => SettingPage()),
-      GetPage(name: ME, page: () => MePage()),
-      GetPage(name: LOGIN, page: () => LoginPage()),
-      GetPage(name: LIST, page: () => ListPage())
-    ];
   }
 }

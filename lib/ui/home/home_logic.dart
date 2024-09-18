@@ -1,4 +1,5 @@
 import 'package:first_project/api/app_cache.dart';
+import 'package:first_project/network/api_server.dart';
 import 'package:first_project/network/dio_api.dart';
 import 'package:first_project/util/random_utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,7 +39,7 @@ class HomePageLogic extends GetxController {
   void requestData(BuildContext context) async {
     BuildContext? dialog;
     showLoadingDialog(context, (dialogContext) => dialog = dialogContext);
-    var result = DioApi.login("loginName");
+    var result = ApiServer.getArticleList("loginName");
     result.then((value) {
       state.requestResult.value = value.datas[0].title;
       update();

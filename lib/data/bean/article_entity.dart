@@ -12,6 +12,7 @@ class ArticleData {
   late int pageCount;
   late int size;
   late int total;
+  late String name;
 
   ArticleData();
 

@@ -1,9 +1,9 @@
 import 'package:first_project/api/api_ext.dart';
-import 'package:first_project/main.dart';
 import 'package:first_project/ui/common/status_bar_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../../route_config.dart';
 import '../common/status_bar.dart';
 import 'home_logic.dart';
 
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     ElevatedButton(onPressed: () async {
-                      var result = await Get.toNamed(GetRouteConfig.SETTING,
+                      var result = await Get.toNamed(RouteConfig.SETTING,
                           arguments: {'msg': 'new params-> '});
                       Map<String, String> newResult =
                           result as Map<String, String>;
@@ -43,11 +43,11 @@ class HomePage extends StatelessWidget {
                           "jump to setting page ${state.argsText.value}");
                     })),
                     ElevatedButton(
-                        onPressed: () => Get.toNamed(GetRouteConfig.LOGIN,
+                        onPressed: () => Get.toNamed(RouteConfig.LOGIN,
                             arguments: {'login'}),
                         child: const Text("登录页面")),
                     ElevatedButton(
-                        onPressed: () => Get.toNamed(GetRouteConfig.LIST),
+                        onPressed: () => Get.toNamed(RouteConfig.LIST),
                         child: Text("gridViewPage")),
                     Obx(() => ElevatedButton(
                         onPressed: () => logic.addCountObs(),

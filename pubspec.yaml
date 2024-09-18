@@ -32,3 +32,6 @@ flutter:
   assets:
     - assets/images/android.png
     - assets/images/back.svg
+
+objectbox:
+  output_dir: database
