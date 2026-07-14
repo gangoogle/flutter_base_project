@@ -4,5 +4,5 @@ class LoginState {
   var accountName = "".obs;
   var accountPassword = "".obs;
 
-  LoginState() {}
+  LoginState();
 }

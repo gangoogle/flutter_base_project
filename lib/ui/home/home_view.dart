@@ -54,14 +54,14 @@ class HomePage extends StatelessWidget {
                         child: const Text("objectBox测试")),
                     ElevatedButton(
                         onPressed: () => Get.toNamed(RouteConfig.LIST),
-                        child: Text("gridViewPage")),
+                        child: const Text("gridViewPage")),
                     Obx(() => ElevatedButton(
                         onPressed: () => logic.addCountObs(),
                         child: Text(state.count.toString()))),
                     Obx(() => Text('当前用户名称:${state.userName}')),
                     ElevatedButton(
                         onPressed: () => logic.reSaveUserName(),
-                        child: Text("修改用户名称")),
+                        child: const Text("修改用户名称")),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -79,9 +79,9 @@ class HomePage extends StatelessWidget {
                     ),
                     Card(
                       color: "#2f2f2f".color,
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,7 +109,7 @@ class HomePage extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                   onPressed: () => {logic.requestData(context)},
-                                  child: Text('请求网络')),
+                                  child: const Text('请求网络')),
                               Obx(() {
                                 return Text(
                                     "请求结果:${state.requestResult.value}");
@@ -160,7 +160,7 @@ class HomePage extends StatelessWidget {
       ElevatedButton(
           onPressed: () =>
               {state.buttonVisible.value = !state.buttonVisible.value},
-          child: Text("按钮显示")),
+          child: const Text("按钮显示")),
       Obx(() {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -169,7 +169,7 @@ class HomePage extends StatelessWidget {
               flex: 1,
               child: AnimatedOpacity(
                 opacity: state.buttonVisible.value ? 1.0 : 0.0,
-                duration: Duration(milliseconds: 1000),
+                duration: const Duration(milliseconds: 1000),
                 child: Container(
                   width: 100,
                   height: 100,
@@ -178,14 +178,14 @@ class HomePage extends StatelessWidget {
               ),
             ),
             AnimatedContainer(
-              duration: Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1000),
               color:
                   state.buttonVisible.value ? Colors.green : Colors.blueAccent,
               width: state.buttonVisible.value ? 50 : 100,
               height: state.buttonVisible.value ? 50 : 100,
             ),
             AnimatedContainer(
-              duration: Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1000),
               color: state.buttonVisible.value
                   ? Colors.deepOrangeAccent
                   : Colors.purple,
@@ -203,7 +203,7 @@ class HomePage extends StatelessWidget {
     return Card(
         color: Colors.teal,
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Row(
             children: [
               SizedBox(

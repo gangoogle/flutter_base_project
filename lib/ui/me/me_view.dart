@@ -56,7 +56,7 @@ class MePage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              Space(height: 10),
+              const Space(height: 10),
               Text(
                 '100645',
                 style: TextStyle(
@@ -89,7 +89,7 @@ class MePage extends StatelessWidget {
                     logic.updateMinus();
                   },
                   child: Column(
-                    children: [Icon(Icons.adb), Space(height: 10), Text("${logic.state.test}")],
+                    children: [const Icon(Icons.adb), const Space(height: 10), Text("${logic.state.test}")],
                   ),
                 );
               }),
@@ -102,7 +102,7 @@ class MePage extends StatelessWidget {
                     logic.updatePlus();
                   },
                   child: Column(
-                    children: [Icon(Icons.adb), Space(height: 10), Text("${logic.state.test}")],
+                    children: [const Icon(Icons.adb), const Space(height: 10), Text("${logic.state.test}")],
                   ),
                 );
               }),
@@ -124,7 +124,7 @@ class MePage extends StatelessWidget {
 
   ListView _buildList() {
     return ListView(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       scrollDirection: Axis.vertical,
       children: [
         Container(
@@ -149,7 +149,7 @@ class MePage extends StatelessWidget {
     return GridView.count(
         crossAxisCount: 3,
         children: List.generate(100, (index) {
-          return Center(child: Text("${index}"));
+          return Center(child: Text("$index"));
         }));
   }
 }

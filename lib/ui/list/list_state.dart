@@ -6,5 +6,5 @@ import '../../data/bean/Item_data.dart';
 class ListState {
   var gridViewList = <ItemData>[].obs;
 
-  ListState() {}
+  ListState();
 }

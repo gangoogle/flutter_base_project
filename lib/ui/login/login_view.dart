@@ -5,7 +5,7 @@ import 'login_logic.dart';
 import 'login_state.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(50),
+            padding: const EdgeInsets.all(50),
             child: Column(
               children: [
                 const Padding(padding: EdgeInsets.only(top: 50)),
@@ -37,12 +37,12 @@ class LoginPage extends StatelessWidget {
                   state.accountPassword.value = value;
                 }),
                 const Space(height: 50),
-                ElevatedButton(onPressed: () {}, child: Text('登录')),
+                ElevatedButton(onPressed: () {}, child: const Text('登录')),
                 ElevatedButton(
                     onPressed: () {
                       Get.back();
                     },
-                    child: Text('退出'))
+                    child: const Text('退出'))
               ],
             ),
           ),

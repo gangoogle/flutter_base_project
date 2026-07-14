@@ -28,7 +28,7 @@ class ListPage extends StatelessWidget {
                 print("new pressed");
                 logic.addListWords;
               },
-              child: Text("new")),
+              child: const Text("new")),
           Expanded(
             flex: 1,
             child: _buildListGridView(),
@@ -42,16 +42,16 @@ class ListPage extends StatelessWidget {
     final ListState state = Get.find<ListLogic>().state;
     return Obx(() {
       return GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
           ),
           itemCount: state.gridViewList.length,
           itemBuilder: (context, index) {
             return Container(
-                padding: EdgeInsets.all(5),
-                margin: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 color: state.gridViewList[index].bgColor,
-                child: Center(child: Text("${state.gridViewList[index].text}")));
+                child: Center(child: Text(state.gridViewList[index].text)));
           });
     });
   }

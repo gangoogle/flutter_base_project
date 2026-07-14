@@ -5,5 +5,5 @@ class MainHomeState {
   var selectIndex = 0.obs;
   var pageControl = PageController(initialPage: 0, keepPage: true);
 
-  MainHomeState() {}
+  MainHomeState();
 }

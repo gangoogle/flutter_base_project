@@ -55,20 +55,18 @@ android {
         applicationId "com.example.first_project"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-    ndkVersion '25.1.8937393'
+    ndkVersion '28.2.13676358'
 
     buildTypes {
         release {
             signingConfig signingConfigs.fsrKeystore
         }
-        debug {
-            signingConfig signingConfigs.fsrKeystore
-        }
+        debug {}
     }
 }
 

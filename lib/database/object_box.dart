@@ -6,7 +6,7 @@ import 'objectbox.g.dart';
 
 class ObjectBox {
   late final Store store;
-  ObjectBox._create(this.store) {}
+  ObjectBox._create(this.store);
 
   static Future<ObjectBox> create() async {
     final docsDir = await getApplicationDocumentsDirectory();

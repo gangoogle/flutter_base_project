@@ -8,7 +8,7 @@ void main() {
   person.sayHello();
   var baby = Baby("age", 30);
   baby.sayHello();
-  int? age = null;
+  int? age;
   if ((age ?? 10) > 20) {
     print("age > 20 ");
   } else {
@@ -53,16 +53,16 @@ void main() {
   print("map const -> ${mapConst[1]}");
   Object objectTest = "23";
   print(
-      'object step 1 -> ${objectTest} | value of -> ${objectTest.runtimeType}');
+      'object step 1 -> $objectTest | value of -> ${objectTest.runtimeType}');
   objectTest = 1;
   print(
-      "object step 2 -> ${objectTest} | value of -> ${objectTest.runtimeType}");
+      "object step 2 -> $objectTest | value of -> ${objectTest.runtimeType}");
   int? lineCount;
   print("lineCount赋值前-> ${lineCount ??= 32} ");
-  print("赋值中-> ${lineCount}");
+  print("赋值中-> $lineCount");
   lineCount = 30;
   print("lineCount赋值后-> $lineCount");
-  final nameFinal = "bob";
+  const nameFinal = "bob";
   const nameConst = "n";
   print("三元 ${nameConst.length > 2 ? ">2" : "<2"}");
   Person personBaby = Baby("baby", 23);
@@ -75,8 +75,8 @@ void main() {
 
 void doTask() async {
   print("sleep start");
-  await Future.delayed(Duration(milliseconds: 2000));
+  await Future.delayed(const Duration(milliseconds: 2000));
   print("sleep finish 1");
-  await Future.delayed(Duration(milliseconds: 2000));
+  await Future.delayed(const Duration(milliseconds: 2000));
   print("sleep finish 2");
 }

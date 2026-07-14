@@ -41,7 +41,7 @@ class ResultInterceptor extends InterceptorsWrapper {
 
   ///处理请求结果
   Map<String, dynamic> handleResult(Map<String, dynamic>? json) {
-    print("脱壳==>${json}");
+    print("脱壳==>$json");
     const successCode = 0;
     if (json == null) {
       throw Exception('请求错误');

@@ -30,7 +30,7 @@ class _StatusBarState extends State<StatusBar> {
       child: Column(
         children: [
           Visibility(
-              visible: widget.openStatusPadding, child: StatusBarPaddingView()),
+              visible: widget.openStatusPadding, child: const StatusBarPaddingView()),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -54,7 +54,7 @@ class _StatusBarState extends State<StatusBar> {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
                       widget.title,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ),

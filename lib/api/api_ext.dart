@@ -21,7 +21,7 @@ int getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase();
   }
   if (hexColor.length == 6) {
-    hexColor = "FF" + hexColor;
+    hexColor = "FF$hexColor";
   }
   return int.parse(hexColor, radix: 16);
 }

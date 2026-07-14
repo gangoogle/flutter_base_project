@@ -7,5 +7,5 @@ class HomePageState {
   var argsText = "".obs;
   var buttonVisible = true.obs;
 
-  HomePageState() {}
+  HomePageState();
 }

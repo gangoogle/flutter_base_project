@@ -38,10 +38,10 @@ class SettingPage extends StatelessWidget {
             onPressed: () {
               state.animSwitchButton.value = !state.animSwitchButton.value;
             },
-            child: Text("switcherSame动画")),
+            child: const Text("switcherSame动画")),
         Obx(() {
           return AnimatedSwitcher(
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             transitionBuilder: (child, animation) {
               return FadeTransition(opacity: animation, child: child);
             },
@@ -70,10 +70,10 @@ class SettingPage extends StatelessWidget {
               state.animSwitchNotSameButton.value =
                   !state.animSwitchNotSameButton.value;
             },
-            child: Text("switcherNotSame动画")),
+            child: const Text("switcherNotSame动画")),
         Obx(() {
           return AnimatedSwitcher(
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             transitionBuilder: (child, animation) {
               return RotationTransition(
                   turns: animation, alignment: Alignment.center, child: child);

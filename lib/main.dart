@@ -6,29 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:toastification/toastification.dart';
-import 'dart:ui';
 import 'database/object_box.dart';
 
 late ObjectBox objectbox;
 
-void main() {
-  //如果size是0，则设置回调，在回调中runApp
-  if (window.physicalSize.isEmpty) {
-    window.onMetricsChanged = () {
-      //在回调中，size仍然有可能是0
-      if (!window.physicalSize.isEmpty) {
-        window.onMetricsChanged = null;
-        _run();
-      }
-    };
-  } else {
-    _run();
-  }
-}
-
-void _run() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   _initStatusBar();
-  _initObjectBox();
+  await _initObjectBox();
   DioApi.init();
   runApp(const MyApp());
 }
@@ -41,8 +26,7 @@ void _initStatusBar() {
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 }
 
-void _initObjectBox() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> _initObjectBox() async {
   objectbox = await ObjectBox.create();
 }
 

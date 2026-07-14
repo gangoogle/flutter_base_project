@@ -18,10 +18,6 @@ class HomePageLogic extends GetxController {
     _getFilePath();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   void setUserName() async {
     state.userName.value = await AppCache.getUserName() ?? "";

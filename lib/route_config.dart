@@ -21,14 +21,14 @@ class RouteConfig {
     return [
       GetPage(
         name: ROOT,
-        page: () => MainHomePage(),
+        page: () => const MainHomePage(),
       ),
       GetPage(name: HOME, page: () => HomePage()),
       GetPage(name: SETTING, page: () => SettingPage()),
-      GetPage(name: ME, page: () => MePage()),
-      GetPage(name: LOGIN, page: () => LoginPage()),
-      GetPage(name: LIST, page: () => ListPage()),
-      GetPage(name: OBJECT_BOX_TEST, page: () => ObjectBoxTestPage()),
+      GetPage(name: ME, page: () => const MePage()),
+      GetPage(name: LOGIN, page: () => const LoginPage()),
+      GetPage(name: LIST, page: () => const ListPage()),
+      GetPage(name: OBJECT_BOX_TEST, page: () => const ObjectBoxTestPage()),
     ];
   }
 }

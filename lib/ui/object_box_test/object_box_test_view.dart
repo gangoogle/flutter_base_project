@@ -103,7 +103,7 @@ class ObjectBoxTestPage extends StatelessWidget {
                     onPressed: () {
                       updateCall(generateRandomString(5));
                     },
-                    child: Text("修改"))
+                    child: const Text("修改"))
               ],
             ),
           ),
