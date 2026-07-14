@@ -5,90 +5,96 @@ import 'setting_logic.dart';
 
 /// 设置页面
 class SettingPage extends StatelessWidget {
-  SettingPage({super.key});
-
-  final logic = Get.put(SettingLogic());
-  final state = Get.find<SettingLogic>().state;
+  const SettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final SettingLogic logic = Get.put(SettingLogic());
+
     return Scaffold(
       body: Column(
         children: [
           StatusBar(
-              color: Colors.blueAccent,
-              openStatusPadding: true,
-              onBack: () {
-                Get.back(result: {'key': "2"});
-              }),
-          GetBuilder<SettingLogic>(builder: (logic) {
-            return Text('last page args -> ${state.argsText}');
-          }),
-          _switcherSameContainerAnim(),
-          _switcherNotSameContainerAnim()
+            color: Colors.blueAccent,
+            openStatusPadding: true,
+            onBack: () {
+              Get.back(result: {'key': "2"});
+            },
+          ),
+          GetBuilder<SettingLogic>(
+            builder: (logic) {
+              return Text('last page args -> ${logic.argsText}');
+            },
+          ),
+          _switcherSameContainerAnim(logic),
+          _switcherNotSameContainerAnim(logic),
         ],
       ),
     );
   }
 
-  Widget _switcherSameContainerAnim() {
+  Widget _switcherSameContainerAnim(SettingLogic logic) {
     return Column(
       children: [
         ElevatedButton(
-            onPressed: () {
-              state.animSwitchButton.value = !state.animSwitchButton.value;
-            },
-            child: const Text("switcherSame动画")),
+          onPressed: () {
+            logic.animSwitchButton.toggle();
+          },
+          child: const Text("switcherSame动画"),
+        ),
         Obx(() {
           return AnimatedSwitcher(
             duration: const Duration(milliseconds: 1000),
             transitionBuilder: (child, animation) {
               return FadeTransition(opacity: animation, child: child);
             },
-            child: state.animSwitchButton.value
+            child: logic.animSwitchButton.value
                 ? Container(
                     key: const ValueKey('23'),
                     width: 50,
                     height: 50,
-                    color: Colors.green)
+                    color: Colors.green,
+                  )
                 : Container(
                     key: const ValueKey('33'),
                     width: 80,
                     height: 80,
-                    color: Colors.redAccent),
+                    color: Colors.redAccent,
+                  ),
           );
         }),
       ],
     );
   }
 
-  Widget _switcherNotSameContainerAnim() {
+  Widget _switcherNotSameContainerAnim(SettingLogic logic) {
     return Column(
       children: [
         ElevatedButton(
-            onPressed: () {
-              state.animSwitchNotSameButton.value =
-                  !state.animSwitchNotSameButton.value;
-            },
-            child: const Text("switcherNotSame动画")),
+          onPressed: () {
+            logic.animSwitchNotSameButton.toggle();
+          },
+          child: const Text("switcherNotSame动画"),
+        ),
         Obx(() {
           return AnimatedSwitcher(
             duration: const Duration(milliseconds: 1000),
             transitionBuilder: (child, animation) {
               return RotationTransition(
-                  turns: animation, alignment: Alignment.center, child: child);
+                turns: animation,
+                alignment: Alignment.center,
+                child: child,
+              );
             },
-            child: state.animSwitchNotSameButton.value
+            child: logic.animSwitchNotSameButton.value
                 ? Container(width: 50, height: 50, color: Colors.green)
                 : SizedBox(
                     width: 50,
                     height: 50,
-                    child: Container(
-                      color: Colors.redAccent,
-                    ),
+                    child: Container(color: Colors.redAccent),
                   ),
           );
-        })
+        }),
       ],
     );
   }

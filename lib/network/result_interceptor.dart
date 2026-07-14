@@ -1,63 +1,84 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
-/// 请求结果拦截器
+/// Validates HTTP responses and unwraps the API's errorCode/errorMsg/data shell.
 class ResultInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print('Request==>[${options.method}] - PATH:${options.uri}${options.path}');
-    return handler.next(options);
+    if (kDebugMode) {
+      debugPrint('Request [${options.method}] ${options.uri}');
+    }
+    handler.next(options);
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    final netStatusCode = response.statusCode;
-    if (netStatusCode != 200) {
-      return handler.reject(DioException(
-        requestOptions: response.requestOptions,
-        error: '请求失败',
-        type: DioExceptionType.badResponse,
-        response: response,
-      ));
+  void onResponse(
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
+    final statusCode = response.statusCode;
+    if (statusCode == null || statusCode < 200 || statusCode >= 300) {
+      handler.reject(_responseError(response, 'HTTP 请求失败 ($statusCode)'));
+      return;
     }
+
     try {
-      //脱壳
-      var shellData = handleResult(response.data);
-      return handler.resolve(
-          Response(requestOptions: response.requestOptions, data: shellData));
-    } catch (e) {
-      return handler.reject(DioException(
-        requestOptions: response.requestOptions,
-        error: e.toString(),
-        type: DioExceptionType.badResponse,
-        response: response,
-      ));
+      final data = handleResult(response.data);
+      handler.resolve(
+        Response<dynamic>(
+          requestOptions: response.requestOptions,
+          data: data,
+          headers: response.headers,
+          statusCode: response.statusCode,
+          statusMessage: response.statusMessage,
+          redirects: response.redirects,
+          extra: response.extra,
+        ),
+      );
+    } on FormatException catch (error) {
+      handler.reject(_responseError(response, error.message, error));
     }
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    return handler.next(err);
+    if (kDebugMode) {
+      debugPrint(
+        'Request failed [${err.requestOptions.method}] '
+        '${err.requestOptions.uri}: ${err.message ?? err.error}',
+      );
+    }
+    handler.next(err);
   }
 
-  ///处理请求结果
-  Map<String, dynamic> handleResult(Map<String, dynamic>? json) {
-    print("脱壳==>$json");
-    const successCode = 0;
-    if (json == null) {
-      throw Exception('请求错误');
+  Object? handleResult(Object? body) {
+    if (body is! Map<String, dynamic>) {
+      throw const FormatException('响应格式错误：预期 JSON 对象');
     }
-    if (json.isEmpty) {
-      throw Exception('请求错误');
+    if (body.isEmpty) {
+      throw const FormatException('响应内容为空');
     }
-    var errorCode = json['errorCode'];
-    if (errorCode != successCode) {
-      if (json.containsKey('errorMsg')) {
-        throw Exception(json['errorMsg']);
-      } else {
-        throw Exception('请求错误');
-      }
+    if (body['errorCode'] != 0) {
+      final message = body['errorMsg'];
+      throw FormatException(
+        message is String && message.isNotEmpty ? message : '请求失败',
+      );
     }
-    print("<==脱壳成功");
-    return json['data'];
+    return body['data'];
+  }
+
+  DioException _responseError(
+    Response<dynamic> response,
+    String message, [
+    Object? cause,
+  ]) {
+    final request = response.requestOptions;
+    return DioException(
+      requestOptions: request,
+      response: response,
+      type: DioExceptionType.badResponse,
+      error: cause ?? message,
+      message: '${request.method} ${request.uri}: $message',
+    );
   }
 }

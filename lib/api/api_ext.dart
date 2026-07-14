@@ -33,20 +33,23 @@ void setStatusColor(bool isDarkMode) {
     brightness = Brightness.dark;
   }
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    // 状态栏颜色设置透明
-    statusBarColor: Colors.transparent,
-    // 状态栏图标为深色
-    statusBarBrightness: brightness,
-    // 状态栏图标亮度
-    statusBarIconBrightness: brightness,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      // 状态栏颜色设置透明
+      statusBarColor: Colors.transparent,
+      // 状态栏图标为深色
+      statusBarBrightness: brightness,
+      // 状态栏图标亮度
+      statusBarIconBrightness: brightness,
+    ),
+  );
 }
 
 void showErrorToast(String text) {
   toastification.show(
-      alignment: Alignment.bottomCenter,
-      type: ToastificationType.error,
-      autoCloseDuration: const Duration(seconds: 3),
-      title: Text(text));
+    alignment: Alignment.bottomCenter,
+    type: ToastificationType.error,
+    autoCloseDuration: const Duration(seconds: 3),
+    title: Text(text),
+  );
 }

@@ -1,13 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'main_home_state.dart';
-
 class MainHomeLogic extends GetxController {
-  final MainHomeState state = MainHomeState();
+  final selectIndex = 0.obs;
+  final pageControl = PageController(initialPage: 0, keepPage: true);
 
   void onNavigationTap(int index) {
-    state.selectIndex.value = index;
-    state.pageControl.jumpToPage(index);
+    selectIndex.value = index;
+    pageControl.jumpToPage(index);
     update();
+  }
+
+  @override
+  void onClose() {
+    pageControl.dispose();
+    super.onClose();
   }
 }

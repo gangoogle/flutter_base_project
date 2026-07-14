@@ -3,7 +3,8 @@ import 'dart:ui';
 
 /// 获取随机字符串
 String generateRandomString(int length) {
-  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const characters =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   Random random = Random();
   return String.fromCharCodes(
     Iterable.generate(

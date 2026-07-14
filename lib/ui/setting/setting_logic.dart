@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
 
-import 'setting_state.dart';
-
 class SettingLogic extends GetxController {
-  final SettingState state = SettingState();
+  String argsText = '';
+  final animSwitchButton = false.obs;
+  final animSwitchNotSameButton = false.obs;
 
   @override
   void onReady() {
-    var map = Get.arguments;
-    state.argsText = map['msg'];
-
+    final arguments = Get.arguments;
+    if (arguments is Map && arguments['msg'] is String) {
+      argsText = arguments['msg'] as String;
+    }
     update();
     super.onReady();
   }

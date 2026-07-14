@@ -1,9 +1,7 @@
 import 'package:first_project/ui/common/status_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../data/bean/Item_data.dart';
 import 'list_logic.dart';
-import 'list_state.dart';
 
 ///列表页面
 class ListPage extends StatelessWidget {
@@ -12,47 +10,45 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ListLogic logic = Get.put(ListLogic());
-    final ListState state = Get.find<ListLogic>().state;
 
     return Scaffold(
       body: Column(
         children: [
           StatusBar(
-              onBack: () {
-                Get.back();
-              },
-              color: Colors.green,
-              openStatusPadding: true),
-          ElevatedButton(
-              onPressed: () {
-                print("new pressed");
-                logic.addListWords;
-              },
-              child: const Text("new")),
-          Expanded(
-            flex: 1,
-            child: _buildListGridView(),
+            onBack: () {
+              Get.back();
+            },
+            color: Colors.green,
+            openStatusPadding: true,
           ),
+          ElevatedButton(
+            onPressed: () {
+              logic.addListWords();
+            },
+            child: const Text("new"),
+          ),
+          Expanded(flex: 1, child: _buildListGridView(logic)),
         ],
       ),
     );
   }
 
-  Widget _buildListGridView() {
-    final ListState state = Get.find<ListLogic>().state;
+  Widget _buildListGridView(ListLogic logic) {
     return Obx(() {
       return GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-          ),
-          itemCount: state.gridViewList.length,
-          itemBuilder: (context, index) {
-            return Container(
-                padding: const EdgeInsets.all(5),
-                margin: const EdgeInsets.all(5),
-                color: state.gridViewList[index].bgColor,
-                child: Center(child: Text(state.gridViewList[index].text)));
-          });
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+        ),
+        itemCount: logic.gridViewList.length,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: const EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
+            color: logic.gridViewList[index].bgColor,
+            child: Center(child: Text(logic.gridViewList[index].text)),
+          );
+        },
+      );
     });
   }
 }

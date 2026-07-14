@@ -8,6 +8,8 @@ class Space extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.only(left: width, top: height));
+    return Padding(
+      padding: EdgeInsets.only(left: width, top: height),
+    );
   }
 }

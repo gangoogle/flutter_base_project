@@ -30,6 +30,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/download/
+/lib/libobjectbox.dylib
+/lib/libobjectbox.so
+/lib/objectbox.dll
 
 # Symbolication related
 app.*.symbols

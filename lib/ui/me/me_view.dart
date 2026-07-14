@@ -1,5 +1,6 @@
 import 'package:first_project/api/api_ext.dart';
 import 'package:first_project/api/widget_ext.dart';
+import 'package:first_project/route_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../common/space.dart';
@@ -11,25 +12,27 @@ class MePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.put(MeLogic());
-    final state = Get.find<MeLogic>().state;
+    final MeLogic logic = Get.put(MeLogic());
+
     return Container(
       color: '#f3f5f5'.color,
-      child: Column(children: [
-        StatusBarPaddingView(color: "#2b2d30".color),
-        _userTitleView(),
-        splitLineH(),
-        const Space(height: 10),
-        _buildCard(),
-        Expanded(
-          flex: 2,
-          child: Container(color: Colors.lightGreen, child: _buildList()),
-        ),
-        Expanded(
-          flex: 5,
-          child: Container(color: "#e8eaed".color, child: _buildGridView()),
-        ),
-      ]),
+      child: Column(
+        children: [
+          StatusBarPaddingView(color: "#2b2d30".color),
+          _userTitleView(),
+          splitLineH(),
+          const Space(height: 10),
+          _buildCard(logic),
+          Expanded(
+            flex: 2,
+            child: Container(color: Colors.lightGreen, child: _buildList()),
+          ),
+          Expanded(
+            flex: 5,
+            child: Container(color: "#e8eaed".color, child: _buildGridView()),
+          ),
+        ],
+      ),
     );
   }
 
@@ -51,19 +54,13 @@ class MePage extends StatelessWidget {
             children: [
               Text(
                 'admin',
-                style: TextStyle(
-                  color: '#0341dd'.color,
-                  fontSize: 18,
-                ),
+                style: TextStyle(color: '#0341dd'.color, fontSize: 18),
               ),
               const Space(height: 10),
               Text(
                 '100645',
-                style: TextStyle(
-                  color: '#0341dd'.color,
-                  fontSize: 18,
-                ),
-              )
+                style: TextStyle(color: '#0341dd'.color, fontSize: 18),
+              ),
             ],
           ),
         ],
@@ -71,8 +68,7 @@ class MePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard() {
-    final logicAll = Get.find<MeLogic>();
+  Widget _buildCard(MeLogic logic) {
     return Card(
       color: Colors.white,
       surfaceTintColor: Colors.white,
@@ -83,29 +79,41 @@ class MePage extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: GetBuilder<MeLogic>(builder: (logic) {
-                return InkWell(
-                  onTap: () {
-                    logic.updateMinus();
-                  },
-                  child: Column(
-                    children: [const Icon(Icons.adb), const Space(height: 10), Text("${logic.state.test}")],
-                  ),
-                );
-              }),
+              child: GetBuilder<MeLogic>(
+                builder: (_) {
+                  return InkWell(
+                    onTap: () {
+                      logic.updateMinus();
+                    },
+                    child: Column(
+                      children: [
+                        const Icon(Icons.adb),
+                        const Space(height: 10),
+                        Text("${logic.test}"),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
             Expanded(
               flex: 1,
-              child: GetBuilder<MeLogic>(builder: (logic) {
-                return InkWell(
-                  onTap: () {
-                    logic.updatePlus();
-                  },
-                  child: Column(
-                    children: [const Icon(Icons.adb), const Space(height: 10), Text("${logic.state.test}")],
-                  ),
-                );
-              }),
+              child: GetBuilder<MeLogic>(
+                builder: (_) {
+                  return InkWell(
+                    onTap: () {
+                      logic.updatePlus();
+                    },
+                    child: Column(
+                      children: [
+                        const Icon(Icons.adb),
+                        const Space(height: 10),
+                        Text("${logic.test}"),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
             Expanded(
               flex: 1,
@@ -115,7 +123,7 @@ class MePage extends StatelessWidget {
                   children: [Icon(Icons.adb), Space(height: 10), Text("手电筒")],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -127,29 +135,23 @@ class MePage extends StatelessWidget {
       padding: const EdgeInsets.all(0),
       scrollDirection: Axis.vertical,
       children: [
-        Container(
-          child: const ListTile(
-            leading: Icon(Icons.info),
-            title: Text('关于我们'),
-          ),
+        ListTile(
+          leading: Icon(Icons.info),
+          title: Text('关于我们'),
+          onTap: () => Get.toNamed(RouteConfig.about),
         ),
-        const ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('设置'),
-        ),
-        const ListTile(
-          leading: Icon(Icons.cached),
-          title: Text('缓存'),
-        ),
+        const ListTile(leading: Icon(Icons.settings), title: Text('设置')),
+        const ListTile(leading: Icon(Icons.cached), title: Text('缓存')),
       ],
     );
   }
 
   GridView _buildGridView() {
     return GridView.count(
-        crossAxisCount: 3,
-        children: List.generate(100, (index) {
-          return Center(child: Text("$index"));
-        }));
+      crossAxisCount: 3,
+      children: List.generate(100, (index) {
+        return Center(child: Text("$index"));
+      }),
+    );
   }
 }

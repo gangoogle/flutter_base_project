@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 
 import '../../database/user.dart';
 import '../../util/random_utils.dart';
-import 'object_box_test_state.dart';
 
 class ObjectBoxTestLogic extends GetxController {
-  final ObjectBoxTestState state = ObjectBoxTestState();
+  final data = <User>[].obs;
 
   @override
   void onInit() {
@@ -16,8 +15,8 @@ class ObjectBoxTestLogic extends GetxController {
 
   void _queryUser() async {
     var list = UserControl.getAllUser();
-    state.data.clear();
-    state.data.addAll(list);
+    data.clear();
+    data.addAll(list);
   }
 
   void addNewUser() async {
@@ -26,17 +25,17 @@ class ObjectBoxTestLogic extends GetxController {
     user.comment = generateRandomString(10);
     user.text = generateRandomString(5);
     UserControl.addUser(user);
-    state.data.add(user);
+    data.add(user);
   }
 
   void deleteUser(User user) async {
     UserControl.deleteUser(user);
-    state.data.remove(user);
+    data.remove(user);
   }
 
   void updateUser(User user, String newText) async {
     user.name = newText;
     UserControl.updateUser(user);
-    state.data.refresh();
+    data.refresh();
   }
 }

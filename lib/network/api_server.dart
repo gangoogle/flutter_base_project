@@ -4,7 +4,7 @@ import '../data/bean/article_entity.dart';
 
 ///API服务
 class ApiServer {
-  static Future<ArticleData> getArticleList(String loginName) async {
+  static Future<ArticleData> getArticleList() async {
     var r = await DioApi.dio.get(UrlConstant.articleList);
     return ArticleData.fromJson(r.data);
   }

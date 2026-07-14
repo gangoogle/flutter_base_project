@@ -19,7 +19,7 @@ class StatusBar extends StatefulWidget {
   final String title;
 
   @override
-  _StatusBarState createState() => _StatusBarState();
+  State<StatusBar> createState() => _StatusBarState();
 }
 
 class _StatusBarState extends State<StatusBar> {
@@ -30,7 +30,9 @@ class _StatusBarState extends State<StatusBar> {
       child: Column(
         children: [
           Visibility(
-              visible: widget.openStatusPadding, child: const StatusBarPaddingView()),
+            visible: widget.openStatusPadding,
+            child: const StatusBarPaddingView(),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

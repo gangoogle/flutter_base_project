@@ -3,13 +3,20 @@ import 'package:first_project/api/app_cache.dart';
 import 'package:first_project/network/api_server.dart';
 import 'package:first_project/util/random_utils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../api/dialog_ext.dart';
-import 'home_state.dart';
 
 class HomePageLogic extends GetxController {
-  final HomePageState state = HomePageState();
+  final HomePageState _state = HomePageState();
+  bool _isRequesting = false;
+
+  RxInt get count => _state.count;
+  RxString get userName => _state.userName;
+  RxString get requestResult => _state.requestResult;
+  RxString get argsText => _state.argsText;
+  RxBool get buttonVisible => _state.buttonVisible;
 
   @override
   void onInit() {
@@ -18,40 +25,58 @@ class HomePageLogic extends GetxController {
     _getFilePath();
   }
 
-
-  void setUserName() async {
-    state.userName.value = await AppCache.getUserName() ?? "";
+  Future<void> setUserName() async {
+    final userName = await AppCache.getUserName();
+    if (!isClosed) this.userName.value = userName;
   }
 
   /// 重新设置用户名
-  void reSaveUserName() {
+  Future<void> reSaveUserName() async {
     var randomString = generateRandomString(5);
-    state.userName.value = randomString;
-    AppCache.saveUserName(randomString);
+    userName.value = randomString;
+    await AppCache.saveUserName(randomString);
   }
 
   void addCountObs() {
-    state.count++;
+    count.value++;
   }
 
-  void requestData(BuildContext context) async {
-    BuildContext? dialog;
-    showLoadingDialog(context, (dialogContext) => dialog = dialogContext);
-    ApiServer.getArticleList("loginName").then((value) {
-      state.requestResult.value = value.datas[0].title;
-      update();
-    }).catchError((err) {
-      showErrorToast(err.toString());
-    }).whenComplete(() {
-      dialog?.hide();
-    });
+  Future<void> requestData(BuildContext context) async {
+    if (_isRequesting) return;
+    _isRequesting = true;
+    final loading = LoadingOverlay.show(context);
+    try {
+      final value = await ApiServer.getArticleList();
+      if (!isClosed) {
+        requestResult.value = value.datas.isEmpty
+            ? '暂无文章'
+            : value.datas.first.title;
+      }
+    } catch (error) {
+      if (!isClosed) showErrorToast(error.toString());
+    } finally {
+      loading.close();
+      _isRequesting = false;
+    }
   }
 
   void _getFilePath() async {
     final tempDir = await getTemporaryDirectory();
     final appDir = await getApplicationDocumentsDirectory();
     final downloadDir = await getDownloadsDirectory();
-    print(
-        "文件目录  \n tempDir:${tempDir.path} \n appDir:${appDir.path} \n downloadDir:${downloadDir?.path ?? ""}");
+    if (kDebugMode) {
+      debugPrint(
+        '文件目录\n tempDir:${tempDir.path}\n appDir:${appDir.path}'
+        '\n downloadDir:${downloadDir?.path ?? ""}',
+      );
+    }
   }
+}
+
+class HomePageState {
+  final count = 0.obs;
+  final userName = ''.obs;
+  final requestResult = ''.obs;
+  final argsText = ''.obs;
+  final buttonVisible = true.obs;
 }

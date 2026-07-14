@@ -10,7 +10,7 @@ class PagerKeepAliveWrapper extends StatefulWidget {
   final Widget child;
 
   @override
-  _PagerKeepAliveWrapperState createState() => _PagerKeepAliveWrapperState();
+  State<PagerKeepAliveWrapper> createState() => _PagerKeepAliveWrapperState();
 }
 
 class _PagerKeepAliveWrapperState extends State<PagerKeepAliveWrapper>

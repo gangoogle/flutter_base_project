@@ -1,11 +1,11 @@
-import 'package:objectbox/objectbox.dart';
+import 'package:first_project/database/objectbox.g.dart';
 
-import '../../main.dart';
+import 'object_box.dart';
 import 'user.dart';
 
 class UserControl {
   static Box<User> _getUserBox() {
-    return objectbox.store.box<User>();
+    return ObjectBox.instance.store.box<User>();
   }
 
   static List<User> getAllUser() {
@@ -22,5 +22,15 @@ class UserControl {
 
   static void updateUser(User user) {
     _getUserBox().put(user);
+  }
+
+  /// 根据用户名查询用户
+  static User? queryNameByName(String name) {
+    final query = _getUserBox().query(User_.name.equals(name)).build();
+    try {
+      return query.findFirst();
+    } finally {
+      query.close();
+    }
   }
 }

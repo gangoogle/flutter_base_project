@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../database/user.dart';
 import '../../util/random_utils.dart';
 import 'object_box_test_logic.dart';
-import 'object_box_test_state.dart';
 
 class ObjectBoxTestPage extends StatelessWidget {
   const ObjectBoxTestPage({super.key});
@@ -12,71 +11,70 @@ class ObjectBoxTestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ObjectBoxTestLogic logic = Get.put(ObjectBoxTestLogic());
-    final ObjectBoxTestState state = Get.find<ObjectBoxTestLogic>().state;
+
     return Scaffold(
-      body: Container(
-        child: Container(
-          child: Column(
-            children: [
-              StatusBar(
-                onBack: () {
-                  Get.back();
-                },
-                title: "ObjectBoxTest",
-                color: Colors.blueGrey,
-                openStatusPadding: true,
-              ),
-              Container(
-                color: Colors.blue,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            logic.addNewUser();
-                          },
-                          child: const Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.add),
-                              Text("新增"),
-                            ],
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-              _objectList(),
-            ],
+      body: Column(
+        children: [
+          StatusBar(
+            onBack: () {
+              Get.back();
+            },
+            title: "ObjectBoxTest",
+            color: Colors.blueGrey,
+            openStatusPadding: true,
           ),
-        ),
+          Container(
+            color: Colors.blue,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      logic.addNewUser();
+                    },
+                    child: const Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [Icon(Icons.add), Text("新增")],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          _objectList(logic),
+        ],
       ),
     );
   }
 
-  Widget _objectList() {
-    final logic = Get.find<ObjectBoxTestLogic>();
-    final ObjectBoxTestState state = logic.state;
+  Widget _objectList(ObjectBoxTestLogic logic) {
     return Obx(() {
       return Expanded(
         flex: 1,
         child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return _itemView(state.data[index], () {
-              logic.deleteUser(state.data[index]);
-            }, (newText) {
-              logic.updateUser(state.data[index], newText);
-            });
+            return _itemView(
+              logic.data[index],
+              () {
+                logic.deleteUser(logic.data[index]);
+              },
+              (newText) {
+                logic.updateUser(logic.data[index], newText);
+              },
+            );
           },
-          itemCount: state.data.length,
+          itemCount: logic.data.length,
         ),
       );
     });
   }
 
   Widget _itemView(
-      User user, VoidCallback onClick, Function(String) updateCall) {
+    User user,
+    VoidCallback onClick,
+    Function(String) updateCall,
+  ) {
     return Card(
       color: Colors.white60,
       child: InkWell(
@@ -100,10 +98,11 @@ class ObjectBoxTestPage extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      updateCall(generateRandomString(5));
-                    },
-                    child: const Text("修改"))
+                  onPressed: () {
+                    updateCall(generateRandomString(5));
+                  },
+                  child: const Text("修改"),
+                ),
               ],
             ),
           ),
