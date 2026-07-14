@@ -11,7 +11,7 @@ class DioApi {
 
   static Dio dio = Dio(
     BaseOptions(
-      baseUrl: UrlConstant.baseUrl,
+      baseUrl:UrlConstant.getBaseUrl(),
       connectTimeout: const Duration(seconds: 15),
       sendTimeout: const Duration(seconds: 15),
       receiveTimeout: const Duration(seconds: 30),

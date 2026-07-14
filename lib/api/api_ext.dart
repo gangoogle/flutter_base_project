@@ -1,3 +1,4 @@
+import 'package:first_project/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toastification/toastification.dart';
@@ -52,4 +53,10 @@ void showErrorToast(String text) {
     autoCloseDuration: const Duration(seconds: 3),
     title: Text(text),
   );
+}
+
+void logPrint(String text){
+  if(isAppDebug){
+    debugPrint(text);
+  }
 }

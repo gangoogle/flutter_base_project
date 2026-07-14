@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+
+import '../api/api_ext.dart';
 
 /// Validates HTTP responses and unwraps the API's errorCode/errorMsg/data shell.
 class ResultInterceptor extends InterceptorsWrapper {
+  static const String unwrapResponseKey = 'unwrapResponse';
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (kDebugMode) {
-      debugPrint('Request [${options.method}] ${options.uri}');
-    }
+    logPrint('Request [${options.method}] ${options.uri}');
     handler.next(options);
   }
 
@@ -19,6 +20,13 @@ class ResultInterceptor extends InterceptorsWrapper {
     final statusCode = response.statusCode;
     if (statusCode == null || statusCode < 200 || statusCode >= 300) {
       handler.reject(_responseError(response, 'HTTP 请求失败 ($statusCode)'));
+      return;
+    }
+
+    final shouldUnwrap =
+        response.requestOptions.extra[unwrapResponseKey] != false;
+    if (!shouldUnwrap) {
+      handler.next(response);
       return;
     }
 
@@ -42,12 +50,10 @@ class ResultInterceptor extends InterceptorsWrapper {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    if (kDebugMode) {
-      debugPrint(
-        'Request failed [${err.requestOptions.method}] '
-        '${err.requestOptions.uri}: ${err.message ?? err.error}',
-      );
-    }
+    logPrint(
+      'Request failed [${err.requestOptions.method}] '
+      '${err.requestOptions.uri}: ${err.message ?? err.error}',
+    );
     handler.next(err);
   }
 
